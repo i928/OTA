@@ -15,7 +15,7 @@
       "buildtype": "userdebug",
       "forum": "",
       "firmware": "",
-      "paypal": "",
+      "paypal": "https://paypal.me/i928",
       "github": "i928",
       "initial_installation_images": [
         "boot"
