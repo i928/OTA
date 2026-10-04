@@ -1,0 +1,6 @@
+LineageOS 22.2 -- unofficial build by i928
+Device: crosshatch
+Build:  lineage-22.2-20261004_011945-UNOFFICIAL-crosshatch.zip (2026-10-03 18:19 PDT)
+Changes since: 2026-10-02 18:09 PDT
+
+  (no source changes)
