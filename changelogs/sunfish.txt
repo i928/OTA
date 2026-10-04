@@ -1,14 +1,13 @@
-This is Android 16 with February 2026 security patches
+Evolution X -- unofficial build by i928
+Device: sunfish
+Build:  EvolutionX-16.0-20261003-1435-sunfish-11.10-Unofficial.zip (2026-10-03 14:35 PDT)
+Changes since: 2026-10-03 03:51 PDT
 
-Notes:
-==============================
-- LineageOS-based source. Signed build.
-- Clean flash mandatory when your build is from Evolution X 8 or lower
+project device/google/sunfish/
+  2cd31fff sunfish: Updater feed + changelog from github.com/i928/OTA
+  73df9ee7 sunfish: point Evolution X Updater at our SourceForge OTA feed
+  4f12ac32 sunfish: share daily_clean.sh with crosshatch; drop the cron dirs
+  f9e2bfb3 sunfish: daily_clean.sh: time the run with date, not $SECONDS
 
-Device changes:
-==============================
-- Update to Evolution X 11.5.3
-- Fix installation of GAPPS package for Vanilla version
-Notable ROM changes:
-==============================
-N/A
+project vendor/lineage/
+  fb3a66b createjson: our SourceForge download path, version from the end of the name
