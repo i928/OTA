@@ -1,13 +1,163 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261003-1435-sunfish-11.10-Unofficial.zip (2026-10-03 14:35 PDT)
-Changes since: 2026-10-03 03:51 PDT
+Build:  EvolutionX-16.0-20261013-0248-sunfish-11.10-Unofficial.zip (2026-10-13 02:48 PDT)
+Changes since: 2026-10-03 14:35 PDT
+
+project bionic/
+  2611fea custom_rom_hide: Exempt zygotes for custom rom path
 
 project device/google/sunfish/
-  2cd31fff sunfish: Updater feed + changelog from github.com/i928/OTA
-  73df9ee7 sunfish: point Evolution X Updater at our SourceForge OTA feed
-  4f12ac32 sunfish: share daily_clean.sh with crosshatch; drop the cron dirs
-  f9e2bfb3 sunfish: daily_clean.sh: time the run with date, not $SECONDS
+  d9129a89 sunfish: ksud 3.4.1 (UAPI 5) + libadbroot from manager 3.4.1
+  46edea38 sunfish: debuglog: keep the previous boot's log as prev.txt
+  181ed0bf sunfish: data-adb-seed: Wi-Fi boot check (capture only)
+  7093a154 Revert "sunfish: wifi gInterfaceChangeWait 2000 -> 60000 ms (28 s boot stall)"
+  01a996e2 sunfish: wifi gInterfaceChangeWait 2000 -> 60000 ms (28 s boot stall)
+  01d35a6f  disable 5G/NR
+  e7efcfff sunfish: zram zstd instead of lz4 (trial)
+  27c27d5e LTE only
+  c41542df sunfish: data-adb-seed: daily_clean survives deep sleep; low-battery shutdown retries
+
+project evolution/manifest/
+  e3223fa manifest: Initialize for Evolution X 11.x+
+
+project external/chromium-webview/patches/
+  3847f83 Update Chromium Webview to 155.0.8059.39
+
+project external/chromium-webview/prebuilt/arm/
+  170e899 Update Chromium Webview arm to 155.0.8059.39
+
+project external/chromium-webview/prebuilt/arm64/
+  604ad4c Update Chromium Webview arm64 to 155.0.8059.39
+
+project external/chromium-webview/prebuilt/x86/
+  2ca10d7 Update Chromium Webview x86 to 155.0.8059.39
+
+project external/chromium-webview/prebuilt/x86_64/
+  de57895 Update Chromium Webview x86_64 to 155.0.8059.39
+
+project frameworks/av/
+  0e8e4b6 CameraService: only attempt the ext library load once
+  08e2b2f Check sensor orentation and override when appying static rotate-and-crop.
+
+project frameworks/base/
+  d30c3f86d PowerManagerService: let battery saver be enabled while plugged in
+  108ccb8bd SleepMode: keep the saved radio state across reboots
+  32847a2bd BatterySaver: allow manual battery saver while plugged in
+  38daf7ba4 AudioService: use the 500 ms audio permission update delay on phones too
+  f18220956 SystemUI: don't show the USB mode picker when a default is set
+  173b21e1a bootanimation: Drop Google Monet [1/2]
+
+project frameworks/opt/telephony/
+  2e4918f025 RIL: log requests unsupported by the radio HAL once, at debug level
+  9f028f1fac SatelliteController: Make NTN nullness explicit
+
+project hardware/lineage/compat/
+  4d12411 libinput: Provide A16 QPR1 ABI shim
+
+project hardware/nxp/nfc/
+  1459e3f Revert "Fix Use-After-Free in NXP NFC HAL timer teardown"
+
+project hardware/qcom-caf/common/
+  5cd5360 common: Do not enable SMMU proxy for parrot/taro even if UM_6_6
+
+project kernel/google/msm-4.14/
+  b2c751fc439b KernelSU-Next: uapi5 (5a21ddac) for KSU-Next 3.4.1
+  33697c87e552 KernelSU-Next: sepol-nopin (43cebe8d)
+  f1e06006efaa f2fs: migrate the unaligned last extent of a swapfile too
+  f3fd78956114 msm: vidc: keep lockdep out of firmware load in core init (debug only)
+  7ebbbb9ad0ae msm: vidc: unlock scratchbufs.lock again after putting reused buffers back
+  2938c79c869e msm: vidc: release scratch buffers without holding the scratchbufs lock
+  f874f8c9f968 msm: camera: crm: nested lockdep annotation for req.lock in link teardown (debug only)
+  b1e3abaa34a2 msm: camera: crm: destroy the link workqueue without holding link->lock
+  f98c1c9485c4 msm: camera: jpeg: take hw_lock with irqsave outside the IRQ handler
+  1337a6d313fb msm: camera: sync: nested lockdep annotation for child rows in group init
+  50670d123e76 msm: camera: isp: own lockdep class for the ISP context lock
+  2dcc439a7164 msm: camera: sync: take row_spinlocks with _bh in cam_sync_get_obj_ref
+  fb6f7dae4af9 msm: camera: irq_controller: one lockdep class per controller (debug only)
+  eae16d549fa5 msm: camera: crm: notify link devices after dropping the link lock
+  77fb0b64077a msm: camera: crm: separate lockdep subclass for the link lock during link setup (debug only)
+  43e431fccca8 ion: ion_query_heaps: copy_to_user after dropping dev->lock
+  35f4bc17ca50 sched: is_sched_lib_based_app: don't block on the task's mmap_sem
+  fa71bab606df power: smb5: keep lockdep out of the USB port thermal zone read (debug only)
+  6dd45d876ea8 dsp: audio_cal_utils: one lockdep class per module for cal type locks
+  d9216573ebc0 dsp: afe: serialise memory maps with afe_mmap_lock, not afe_cmd_lock
+  9434a646991d dsp: audio_cal_utils: import/release ION buffers outside cal_type->lock
+  d247346ade49 Revert "dsp: afe: take afe_cmd_lock around cal_utils_set_cal() too"
+  429eb7f53975 fscrypt: no filesystem reclaim in the one-time bounce pool allocation
+  5b161d3c5af1 KernelSU-Next: policy-noio (4e77087c)
+  0b9fab69fbfa dsp: afe: take afe_cmd_lock around cal_utils_set_cal() too
+  ff89d2d055c3 dsp: audio_notifier: don't take notifier_mutex in service callbacks
+  82cf0ee17dd6 fs/exec: run KSU adb_root on every exec, not only while the ksud hook is up
+  97fe001bdd92 cgroup: free cgroup_root via RCU; cset_cgroup_from_root() needs only css_set_lock
+  d4923af41b42 lpm-levels: use _rcuidle for the cluster and power-select tracepoints too
+  0ebf664fcd05 msm: kgsl: take the dispatcher plist_lock with irqs disabled
+  bfc74da28c99 lockdep: larger chain and stack-trace tables
+  902671a9986a qcacld-3.0: hdd: look up the IPv4 address under RCU, return the value
+  c38ccefd1c63 drm/msm/sde: unregister the crtc power event after dropping crtc_lock
+  c0f3abe30200 qcacld-3.0: hdd: fix RCU-unsafe in_device/inet6_dev lookups
+  0f11c878b1b4 ipv6: addrconf: don't allocate temp addresses with GFP_KERNEL in atomic context
+  fd8b7ce02c26 devfreq: bw_hwmon: own lock for governor registration
+  0504640a0de6 perf: core: separate lockdep subclass for pmus_lock in release (debug only)
+  5a590cf62618 qcacld-3.0: hdd: don't wait for hdd_init_deinit_lock in open while the driver loads
+  4b6d85382867 qcacld-3.0: txrx: flush peer_unmap_timer_work only if it was created
+  f89a71a8d93d qcacmn: hif: take ce_index_lock with bh disabled in the remaining process-context paths
+  35b8514ce860 qcacmn: hif: take ce_index_lock with bh disabled when cancelling sends
+  01e2f41dcc6f net: rmnet: own lockdep classes for the rmnet virtual devices
+  105ab27dc175 qdf: one lockdep class per qdf_mutex_create() call site
+  e9e5e8a81ccd qdf: one lockdep class per qdf_spinlock_create() call site
+  170f776c5de0 ALSA: pcm: take timer->lock before runtime_lock in detach_substream
+  44f7a418fb1e dsp: audio_notifier: keep lockdep out of PDR registration (debug only)
+  496b3360c82f dsp: q6afe: keep lockdep out of afe_alloc_cal's buffer import (debug only)
+  8c0ed2834ec9 msm: camera: req_mgr: own lockdep class for irq-mode workqs
+  a13c5b859910 mm: mm_event: irq-safe vmstat_lock and period_lock writers
+  6389103eb410 diag: close peripheral transports outside cntl_lock
+  88e4c75faa38 drm/msm/sde: own spinlock for the crtc frame_event_list
+  bc139b6f4d24 drm/msm/sde: one lockdep class per power handle
+  97e3b4857bbb devfreq: one lockdep class per devfreq for event_lock too
+  38e1460c5d3e devfreq: one lockdep class per devfreq
+  0a870b8ddb2e lpm-levels: use the _rcuidle cpu_idle tracepoints
+  8fdf26dd710c cpuset: take the hotplug lock before cpuset_mutex everywhere
+  9f2f9c2b48b4 extcon: initialize the blocking notifier heads
+  21f316d67fc8 regulator: one lockdep class per regulator_dev
+  a216ad6de8d7 pmic-voter: one lockdep class per votable
+  0c2780dcf0b1 ipc_logging: take context_lock with irqs off in ipc_log_context_destroy()
+  b1ff3fca74b3 thermal: of: own lockdep class for virtual sensor zones
+  4613ee3be0e0 debug_locks: on when a lock debugging option is built in
+  312fd1299b15 net: dev_recursion_level() uses this_cpu_read()
+  201d96fd5200 qdf: print leaked allocations only where the printer exists
+  ea3ed417222f sunfish debug variants: enable DEBUG_FS; finish the gpio dump revert
+  bf0ac5d6c627 lockdep: lock_is_held()/lock_is_held_type() take a const lockdep_map
+  d76e273ee205 gpio.h: keep the msm_gpio_dump stub inside the include guard
+  66e24e261fe7 Makefile: drop the tree-wide -Wno-error for discarded qualifiers
+  75509cfde94a rcu: give rcu_trace_lock_map its own lock class
+  3054649a1d7f qdf: correct stubs for the debloated qdf_mem/qdf_mc_timer
+  45f31f3ee2cf gpio, power_util: replace the misplaced dump stubs
+  eb2d53873507 sunfish: build the SUNFISH_KERNEL_DEBUG kernel variants
+  b5411ac45341 qcacld-3.0: always signal UMAC stop completion
+
+project libcore/
+  26d7eb5 Revert "blocking non-sense root checks and sdk"
+
+project lineage/scripts/
+  c00c7f2 pixel: Update ignored overlays for CP3A
+
+project packages/apps/Evolver/
+  34a6d78 New Crowdin updates
+
+project packages/apps/Messaging/
+  e8d54f1 Messaging: Skip boot notifications when not the default SMS app
+
+project packages/apps/Settings/
+  5e3221de045 Settings: allow toggling battery saver while plugged in
+
+project packages/modules/Bluetooth/
+  257a7e2 Bluetooth: accept proprietary L2CAP option 0x7F on config
+
+project system/core/
+  1429ff9 init: Remove sys property triggering custom rom detect
+
+project vendor/apn/
+  35d822d apn: Remove YT and separate Palestinian APNs from IL
 
 project vendor/lineage/
-  fb3a66b createjson: our SourceForge download path, version from the end of the name
+  6f49d68 Revert "release: bp4a android.xr.xr_manifest_entries READ_WRITE (DISABLED)"
