@@ -1,6 +1,115 @@
 LineageOS 22.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-22.2-20261004_011945-UNOFFICIAL-crosshatch.zip (2026-10-03 18:19 PDT)
-Changes since: 2026-10-02 18:09 PDT
+Build:  lineage-22.2-20261013_083623-UNOFFICIAL-crosshatch.zip (2026-10-13 01:33 PDT)
+Changes since: 2026-10-03 18:19 PDT
 
-  (no source changes)
+project kernel/google/msm-4.9/
+  a5fe7ee31c8a f2fs: use boottime for the mount-time base
+  065047fc201c kernelsu: bump to 5a21ddac (KSU-Next 3.4.1, UAPI 5)
+  e06dc35f3837 Revert "TEST b1c1_defconfig: LTO without CFI (bisect the ld.lld LTO+CFI early hang)"
+  9662d8141d3d Revert "TEST b1c1_defconfig: CFI on, permissive (log the violations)"
+  34c546270993 kbuild: modversions: Fix relative CRC byte order interpretation
+  aa3e99f87557 kbuild: modversions: add infrastructure for emitting relative CRCs
+  42c5c2f44e38 modversions: treat symbol CRCs as 32 bit quantities
+  47f2a9311c9e ANDROID: arm64: add __nocfi to __apply_alternatives
+  f3a2d6df1730 TEST b1c1_defconfig: CFI on, permissive (log the violations)
+  802ab2574fe1 TEST b1c1_defconfig: LTO without CFI (bisect the ld.lld LTO+CFI early hang)
+  21b05d10ae74 UPSTREAM: arm64: relocatable: fix inconsistencies in linker script and options
+  4a8ddf6149e5 scripts/Kbuild: get ld-name without bash here-strings
+  667ad7c24fce b1c1_defconfig: LTO + CFI back on (ld.lld LTO)
+  2c4e607b85bd ANDROID: arm64: Place CFI jump table sections in .text
+  b7c58201b109 ANDROID: kbuild: ensure __cfi_check is correctly aligned
+  4a3b0caaac69 ANDROID: use non-canonical CFI jump tables
+  83dcdc07bcfb ANDROID: kbuild: merge module sections with LTO
+  396e98398323 kbuild: allow lld to be used with CONFIG_LTO_CLANG
+  49b2a7ed4b93 kbuild: fix ld-name for GNU gold
+  d9df145b72bc Revert "TEMP b1c1_defconfig: panic on hung task / soft lockup (clang23 boot debug)"
+  1c1c3d77803a TEMP b1c1_defconfig: panic on hung task / soft lockup (clang23 boot debug)
+  b26a7b7f5c09 KernelSU-Next: sepol-nopin (43cebe8d)
+  d247ad879eb5 b1c1_defconfig: no LTO/CFI with Clang 23 (no LLVMgold.so)
+  b20b53612422 fts, qcacld: fix clang 23 strict-prototypes / array-parameter errors
+  84b6f0a965d4 qcacld-3.0: Fix implicit enum-enum-cast warnings
+  49809ef0e1e2 UPSTREAM: kbuild: Disable -Wdefault-const-init-unsafe
+  5b098aa19f24 arm64: vdso32: keep clang's assembly output GNU-as compatible
+  6211f3933c87 arm64: vdso32: give clang a gnueabi triple for an androidkernel prefix
+  09c691b5b57a Makefile: keep clang's assembly output GNU-as compatible
+  3962b8f971e9 msm: kgsl: don't del_timer_sync() the syncobj timer from a fence callback
+  de1e40e722b3 msm: vidc: one lockdep class per buffer list
+  b0239358db4b msm: camera: crm: unlink the link's devices without holding link->lock
+  c79bf2cdfddf msm: camera: crm: print the request table after dropping link->lock in unlink
+  502001bbee0f f2fs: drop quota_sem from the dquot release/dirty/commit_info callbacks
+  7c0b9b523afe msm: camera: sync: nested lockdep annotation for child rows in group init
+  fd512e554396 msm: camera: crm: nested lockdep annotation for req.lock in link teardown (debug only)
+  407a3c3b57df msm: camera: irq_controller: one lockdep class per controller (debug only)
+  2d5a6d3640ce dsp: audio_cal_utils: one lockdep class per module for cal type locks
+  77d1b54e3e97 dsp: afe: serialise memory maps with afe_mmap_lock, not afe_cmd_lock
+  1994cc272ee4 dsp: audio_cal_utils: import/release ION buffers outside cal_type->lock
+  130961a557a0 msm: camera: crm: destroy the link workqueue without holding link->lock
+  ea643b15ef98 msm: camera: jpeg: take hw_lock with irqsave outside the IRQ handler
+  d0eb4e2c8270 msm: vidc: unlock scratchbufs.lock again after putting reused buffers back
+  ee43b4365087 msm: vidc: release scratch buffers without holding the scratchbufs lock
+  7afb9ef50294 msm: camera: crm: notify link devices after dropping the link lock
+  6115973ae848 fscrypt: no filesystem reclaim in the one-time bounce pool allocation
+  77438bc867b5 msm: camera: crm: separate lockdep subclass for the link lock during link setup (debug only)
+  91b90c29b9d0 dsp: audio_notifier: don't take notifier_mutex in service callbacks
+  9e1335b7b299 ipc_router: glink: deliver received packets after dropping ss_reset_rwlock
+  1a2ede8cdefa dsp: afe: change lock sequence to avoid deadlock
+  dda644d36fc0 dsp: q6afe: keep lockdep out of afe_alloc_cal's cal allocation (debug only)
+  b9b094526b3b dma-buf/fence: Fix lock inversion within fence-array
+  debedf8d2310 msm: camera: isp: own lockdep class for the ISP context lock
+  45dba54755af mailbox: qcom-rpmh: _rcuidle for the send/control tracepoints
+  28ed6e3d3aad drivers/kernelsu: policy-noio (4e77087c) for the debug_locking pass
+  5cab58f943c2 lockdep: teach lockdep about memalloc_noio_save
+  5e6a1b00ad38 lpm-levels: RCU_NONIDLE around the hrtimer calls in the idle path
+  6354c5a91ff1 drm/msm/sde: keep lockdep out of the cp reg-bus votes (debug only)
+  feae6e378931 psi: use the 4.9 timer API for poll_timer
+  9af9d9cde8f6 FROMLIST: psi: stop relying on timer_pending for poll_work rescheduling
+  b172e98f71af psi: Fix race between psi_trigger_create/destroy
+  e9ceaf21784a psi: eliminate kthread_worker from psi trigger scheduling mechanism
+  320ec46425a5 f2fs: cover last_disk_size update with spinlock
+  f6ebdc077f19 f2fs: declare nested quota_sem in f2fs_dquot_commit
+  b6619abee523 qcacld: csr_ll_open: keep the definition out of the lockdep macro
+  a82975d84906 qcacld: csr_ll_open: one lockdep class per call site
+  5d9215df9095 rmnet_data: accept RCU-bh too when reading the phys ep config
+  d9edf86f8024 rmnet_data: own lockdep classes for the vnd tx locks
+  852270d61202 rmnet_data: free the phys ep config after unregistering the rx handler
+  12cb9a0b5410 mnh-thermal: keep lockdep out of the state check (debug only)
+  262ac550172f audio_pdr: keep lockdep out of service notifier registration (debug only)
+  8110770d1915 rmnet_data: rcu_access_pointer() for the rx_handler comparison
+  9f46603d7b92 ipc_router: glink: separate lockdep subclass for ss_reset_rwlock on rx (debug only)
+  447120fd92ce ipc_router: keep lockdep out of the whole one-time routing table init (debug only)
+  0b7969a369b5 ipc_router: separate lockdep subclass for the one-time routing table init (debug only)
+  5009bdbcf3b1 devfreq: one lockdep class per devfreq
+  f63f82badd68 sched/tune: read the task's schedtune under RCU
+  4292c888aae4 lpm-levels: _rcuidle for all remaining tracepoints
+  0e015258fb24 qcacld-3.0: hdd: RCU-safe in_device/inet6_dev/ifa lookups
+  0ad839c2404a qcacmn: hif: take ce_index_lock with bh disabled in process-context paths
+  138a616f97f7 lockdep: larger tables for the debug_locking variant
+  dfaab90d5ec6 lpm-levels: use the _rcuidle tracepoints
+  6d8cedf181ce drm/msm/sde: frame_event_list own lock; unregister power event after crtc_lock
+  78a49de709df ALSA: pcm: take timer->lock before runtime_lock in detach_substream
+  57cd76940333 diag: close peripheral transports outside cntl_lock
+  a3d9acf00334 mm: mm_event: irq-safe vmstat_lock and period_lock writers
+  97ac4e3ec0c4 ipc_logging: take context_lock with irqs off in ipc_log_context_destroy()
+  875124ed1687 extcon: initialize the blocking notifier heads
+  d35d7ec51fc7 pmic-voter: one lockdep class per votable
+  338b40d7ecef msm: camera: req_mgr: own lockdep class for irq-mode workqs
+  08153ba9b0bf devfreq: bw_hwmon: own lock for governor registration
+  a9b7f7ff15f9 qcacld-3.0: hdd: don't wait for hdd_init_deinit_lock in open while the driver loads
+  9c39f6b045b2 qcacmn: hif: take ce_index_lock with bh disabled when cancelling sends
+  5c500f8fcafd thermal: of: own lockdep class for virtual sensor zones
+  ecff7d048ae3 msm: kgsl: take the dispatcher plist_lock with irqs disabled
+  69ed60deaa83 drm/msm/sde: one lockdep class per power handle
+  6274a76826ef qdf: one lockdep class per qdf_mutex_create() call site
+  026bf4509d35 qdf: one lockdep class per qdf_spinlock_create() call site
+  dd4f25a65038 regulator: one lockdep class per regulator_dev
+  12502d1244c0 msm: kgsl: gmu: hold rcu_read_lock() around the OPP lookup
+  3aef5eaf4b78 iommu: arm-smmu: same lockdep subclass in arm_smmu_alloc_cb() (debug only)
+  02172535b84a iommu: arm-smmu: separate lockdep subclass for stream_map_mutex in attach/detach (debug only)
+  67eeee7a86cb usb: dwc3: gadget: don't WARN when link wakeup fails before a transfer
+  d328e78fb683 ion: system_heap: sync cached pages for the heap device, not NULL
+
+project kernel/google/msm-4.9/drivers/kernelsu/
+  5a21ddac fix(kernel): Avoid repeatedly triggering service stage (https://github.com/tiann/KernelSU/pull/3800) (#1573)
+  43cebe8d kernel: selinux: don't pin the policy writer to one CPU
+  4e77087c kernel: selinux: apply policy changes under memalloc_noio
