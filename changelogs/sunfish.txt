@@ -1,7 +1,7 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261013-1432-sunfish-11.10-Unofficial.zip (2026-10-13 14:32 PDT)
-Changes since: 2026-10-13 08:50 PDT
+Build:  EvolutionX-16.0-20261013-2208-sunfish-11.10-Unofficial.zip (2026-10-13 22:08 PDT)
+Changes since: 2026-10-13 14:32 PDT
 
-project frameworks/base/
-  340586107 PackageManager: keep /data package parse cache across OTAs
+project kernel/google/msm-4.14/
+  2e8958239c11 f2fs: fail checkpoint=disable fast at mount instead of GC
