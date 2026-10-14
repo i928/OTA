@@ -1,14 +1,8 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261014-1032-sunfish-11.10-Unofficial.zip (2026-10-14 10:32 PDT)
-Changes since: 2026-10-14 05:43 PDT
-
-project frameworks/base/
-  75839849f WindowManager: don't hold boot on screen decoration overlays
-  01f9d2912 SleepMode: keep Wi-Fi on by default
-
-project packages/apps/Settings/
-  1c07af64888 SleepMode: default the Wi-Fi toggle to off
+Build:  EvolutionX-16.0-20261014-1400-sunfish-11.10-Unofficial.zip (2026-10-14 14:00 PDT)
+Changes since: 2026-10-14 10:32 PDT
 
 project vendor/lineage/
-  89411db bootanimation: let the exit skip the outro (part2)
+  063ef98 bootanimation: let the exit interrupt the part1 loop
+  a3c09bf bootanimation: rebuild the zip when desc.txt or the tarball changes
