@@ -1,7 +1,10 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261013-2208-sunfish-11.10-Unofficial.zip (2026-10-13 22:08 PDT)
-Changes since: 2026-10-13 14:32 PDT
+Build:  EvolutionX-16.0-20261014-0245-sunfish-11.10-Unofficial.zip (2026-10-14 02:45 PDT)
+Changes since: 2026-10-13 22:08 PDT
 
-project kernel/google/msm-4.14/
-  2e8958239c11 f2fs: fail checkpoint=disable fast at mount instead of GC
+project frameworks/base/
+  fd5ac0d77 PackageManager: keep /data app ABI across OTAs
+
+project packages/apps/Updater/
+  734ad98 Updater: restart a download that has no partial file on resume
