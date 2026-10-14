@@ -1,6 +1,7 @@
 LineageOS 22.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-22.2-20261013_221429-UNOFFICIAL-crosshatch.zip (2026-10-13 15:14 PDT)
-Changes since: 2026-10-13 01:33 PDT
+Build:  lineage-22.2-20261014_045945-UNOFFICIAL-crosshatch.zip (2026-10-13 21:59 PDT)
+Changes since: 2026-10-13 15:14 PDT
 
-  (no source changes)
+project kernel/google/msm-4.9/
+  9e5ab6fe5f0f f2fs: skip needless GC and fail fast on checkpoint=disable at mount
