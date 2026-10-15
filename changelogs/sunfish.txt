@@ -1,7 +1,7 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261014-1638-sunfish-11.10-Unofficial.zip (2026-10-14 16:38 PDT)
-Changes since: 2026-10-14 14:00 PDT
+Build:  EvolutionX-16.0-20261014-2230-sunfish-11.10-Unofficial.zip (2026-10-14 22:30 PDT)
+Changes since: 2026-10-14 16:38 PDT
 
-project frameworks/native/
-  703278d installd: run in the top-app cpuset and boost group
+project frameworks/base/
+  06f89efa4 BatteryStatsService: start power stats aggregation 2 minutes after boot
