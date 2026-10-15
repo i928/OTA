@@ -1,7 +1,7 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261014-2230-sunfish-11.10-Unofficial.zip (2026-10-14 22:30 PDT)
-Changes since: 2026-10-14 16:38 PDT
+Build:  EvolutionX-16.0-20261015-0233-sunfish-11.10-Unofficial.zip (2026-10-15 02:33 PDT)
+Changes since: 2026-10-14 22:30 PDT
 
-project frameworks/base/
-  06f89efa4 BatteryStatsService: start power stats aggregation 2 minutes after boot
+project device/google/sunfish/
+  de2dcdae sunfish: TEMP system_server dexpreopt debug info for boot profiling
