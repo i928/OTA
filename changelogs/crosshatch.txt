@@ -1,14 +1,7 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261015_051558-UNOFFICIAL-crosshatch.zip (2026-10-14 22:15 PDT)
-Changes since: 2026-10-14 17:50 PDT
-
-project device/google/crosshatch/
-  274f9a7c crosshatch: TEMP panic_on_bootloader_reboot=1 for the A16 bring-up
-  9c462792 crosshatch: TEMP androidboot.init_fatal_panic=true for the A16 bring-up
+Build:  lineage-23.2-20261015_092643-UNOFFICIAL-crosshatch.zip (2026-10-15 02:26 PDT)
+Changes since: 2026-10-14 22:15 PDT
 
 project kernel/google/msm-4.9/
-  99279f249d59 Revert the bpfloader/netbpfload/netd fake uname (5.4.186) for Android 16
-  9e39916f4a66 BACKPORT: cgroup: Add mount flag to enable cpuset to use v2 behavior in v1 cgroup
-  de51a2716d56 TEMP: panic_on_bootloader_reboot debug param
-  d0b0fe487302 selinux: avtab: accept and drop netlink xperms (AVTAB_XPERMS_NLMSG)
+  b693eec1cf02 BACKPORT: bpf/verifier: improve register value range tracking with ARSH
