@@ -1,6 +1,7 @@
-LineageOS 22.2 -- unofficial build by i928
+LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-22.2-20261015_000208-UNOFFICIAL-crosshatch.zip (2026-10-14 16:56 PDT)
-Changes since: 2026-10-14 14:41 PDT
+Build:  lineage-23.2-20261015_005956-UNOFFICIAL-crosshatch.zip (2026-10-14 17:50 PDT)
+Changes since: 2026-10-14 16:56 PDT
 
-  (no source changes)
+project kernel/google/msm-4.9/
+  4efbf3a2ba02 BACKPORT: mm,fork: introduce MADV_WIPEONFORK
