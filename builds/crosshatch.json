@@ -1,0 +1,18 @@
+[
+  {
+    "datetime": 1792079203,
+    "type": "UNOFFICIAL",
+    "version": "23.2",
+    "files": [
+      {
+        "filename": "lineage-23.2-20261015_154649-UNOFFICIAL-crosshatch.zip",
+        "os_patch_level": "2026-09-01",
+        "os_sdk_level": 36,
+        "sha256": "bc397b7bea8db02857ee6a207e0f3cb533c78453a94a3e1eb3a0e3da3fcd89db",
+        "size": 2884961242,
+        "url": "https://sourceforge.net/projects/androidos/files/crosshatch/android16/lineage-23.2-20261015_154649-UNOFFICIAL-crosshatch.zip/download",
+        "ota_property_files": "payload_metadata.bin:3729:107269,payload.bin:3729:2884954274,payload_properties.txt:2884958061:156,apex_info.pb:2008:1101,care_map.pb:3156:526,metadata:69:683,metadata.pb:820:1140"
+      }
+    ]
+  }
+]
