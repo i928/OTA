@@ -1,8 +1,7 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261014-1400-sunfish-11.10-Unofficial.zip (2026-10-14 14:00 PDT)
-Changes since: 2026-10-14 10:32 PDT
+Build:  EvolutionX-16.0-20261014-1638-sunfish-11.10-Unofficial.zip (2026-10-14 16:38 PDT)
+Changes since: 2026-10-14 14:00 PDT
 
-project vendor/lineage/
-  063ef98 bootanimation: let the exit interrupt the part1 loop
-  a3c09bf bootanimation: rebuild the zip when desc.txt or the tarball changes
+project frameworks/native/
+  703278d installd: run in the top-app cpuset and boost group
