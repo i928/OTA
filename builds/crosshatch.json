@@ -8,6 +8,15 @@
       "size": 2866277914,
       "url": "https://sourceforge.net/projects/androidos/files/crosshatch/android15/lineage-22.2-20261015_000208-UNOFFICIAL-crosshatch.zip/download",
       "version": "22.2"
+    },
+    {
+      "datetime": 1792079203,
+      "filename": "lineage-23.2-20261015_154649-UNOFFICIAL-crosshatch.zip",
+      "id": "bc397b7bea8db02857ee6a207e0f3cb533c78453a94a3e1eb3a0e3da3fcd89db",
+      "romtype": "UNOFFICIAL",
+      "size": 2884961242,
+      "url": "https://sourceforge.net/projects/androidos/files/crosshatch/android16/lineage-23.2-20261015_154649-UNOFFICIAL-crosshatch.zip/download",
+      "version": "23.2"
     }
   ]
 }
