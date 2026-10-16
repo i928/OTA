@@ -1,8 +1,7 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261016_130826-UNOFFICIAL-crosshatch.zip (2026-10-16 06:08 PDT)
-Changes since: 2026-10-15 20:04 PDT
+Build:  lineage-23.2-20261016_211545-UNOFFICIAL-crosshatch.zip (2026-10-16 14:15 PDT)
+Changes since: 2026-10-16 06:08 PDT
 
-project kernel/google/msm-4.9/
-  cc1aa42461a7 vmlinux.lds.h: KEEP() jump table and other start/stop tables under --gc-sections
-  2763212d870e arm64: build with -mcpu=cortex-a55+crypto (SDM845)
+project device/google/crosshatch/
+  2b76dc585 crosshatch: format /data without the f2fs compression feature

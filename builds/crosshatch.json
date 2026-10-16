@@ -1,17 +1,17 @@
 [
   {
-    "datetime": 1792156100,
+    "datetime": 1792185339,
     "type": "UNOFFICIAL",
     "version": "23.2",
     "files": [
       {
-        "filename": "lineage-23.2-20261016_130826-UNOFFICIAL-crosshatch.zip",
+        "filename": "lineage-23.2-20261016_211545-UNOFFICIAL-crosshatch.zip",
         "os_patch_level": "2026-09-01",
         "os_sdk_level": 36,
-        "sha256": "3b7dee636b47f85681cadb93a2b8448d722bbc41ce5d92aa0c896fefb7548048",
-        "size": 2691410504,
-        "url": "https://sourceforge.net/projects/androidos/files/crosshatch/android16/lineage-23.2-20261016_130826-UNOFFICIAL-crosshatch.zip/download",
-        "ota_property_files": "payload_metadata.bin:3729:101448,payload.bin:3729:2691403536,payload_properties.txt:2691407323:156,apex_info.pb:2008:1101,care_map.pb:3156:526,metadata:69:683,metadata.pb:820:1140"
+        "sha256": "0910afdb4bc2c5f85a4347ddbfd13f9c3c9afcb882bff1a7c4b2a0709bb187d4",
+        "size": 2691494339,
+        "url": "https://sourceforge.net/projects/androidos/files/crosshatch/android16/lineage-23.2-20261016_211545-UNOFFICIAL-crosshatch.zip/download",
+        "ota_property_files": "payload_metadata.bin:3729:101447,payload.bin:3729:2691487371,payload_properties.txt:2691491158:156,apex_info.pb:2008:1101,care_map.pb:3156:526,metadata:69:683,metadata.pb:820:1140"
       }
     ]
   }
