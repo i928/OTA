@@ -1,13 +1,11 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261015-1526-sunfish-11.10-Unofficial.zip (2026-10-15 15:26 PDT)
-Changes since: 2026-10-15 14:10 PDT
+Build:  EvolutionX-16.0-20261015-1917-sunfish-11.10-Unofficial.zip (2026-10-15 19:17 PDT)
+Changes since: 2026-10-15 15:26 PDT
 
-project device/google/sunfish/
-  95b02eed sunfish: raise the GPU floor to 430 MHz on touch interaction
+project device/xiaomi/sm8250-common/
+  fea1cb4 sm8250-common: disable GL composition backpressure
 
 project frameworks/base/
-  13f50f7e2 SleepMode: Wi-Fi follows use instead of staying off all night
-
-project packages/apps/Settings/
-  47c5f7e10bc SleepMode: describe the use-aware Wi-Fi toggle
+  bbe3aa75f DeviceConfigUtils: write only changed overrides; re-apply off the main thread
+  a0121fee8 pm: don't copy all packages per boot-scanned package for unused maps
