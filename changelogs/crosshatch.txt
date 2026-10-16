@@ -1,14 +1,8 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261016_030431-UNOFFICIAL-crosshatch.zip (2026-10-15 20:04 PDT)
-Changes since: 2026-10-15 15:22 PDT
+Build:  lineage-23.2-20261016_130826-UNOFFICIAL-crosshatch.zip (2026-10-16 06:08 PDT)
+Changes since: 2026-10-15 20:04 PDT
 
-project device/google/crosshatch/
-  f205d6554 b1c1: sepolicy: dontaudit instead of allow for the two prop reads
-  a9b7870e2 b1c1: keep PixelLogger (partly reverts the floral 9e807a47 port)
-  0c9d85020 b1c1: sepolicy: audioserver/qtelephony prop reads, powerhal -> thermal (from floral 27aeb979, dc519324)
-  8df9f4b68 b1c1: drop ro.apk_verity.mode and PixelLogger (from floral 5e7cf0c7, 9e807a47)
-  5b72aede0 b1c1: overlay: config_screenBrightnessDoze to float (from floral 330802e8)
-  bd8c4dc90 b1c1: overlay: drop COLOR_MODE_AUTOMATIC (from floral a06bb645)
-  d4abfa3d0 b1c1: pinner files for Android 16 (from floral bf4c318e)
-  b112dcb1c b1c1: disable GL composition backpressure
+project kernel/google/msm-4.9/
+  cc1aa42461a7 vmlinux.lds.h: KEEP() jump table and other start/stop tables under --gc-sections
+  2763212d870e arm64: build with -mcpu=cortex-a55+crypto (SDM845)
