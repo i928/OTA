@@ -1,15 +1,6 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261017_070210-UNOFFICIAL-crosshatch.zip (2026-10-17 00:02 PDT)
-Changes since: 2026-10-16 14:15 PDT
+Build:  lineage-23.2-20261017_090505-UNOFFICIAL-crosshatch.zip (2026-10-17 02:04 PDT)
+Changes since: 2026-10-17 00:02 PDT
 
-project device/google/crosshatch/
-  be8c5bd22 crosshatch: build the kasan debug kernel without DEBUG_INFO
-  cfecae451 crosshatch: kasan debug kernel logs reports instead of panicking
-  d04e24cac crosshatch: debug kernels log WARNs instead of panicking
-
-project kernel/google/msm-4.9/
-  b9c0021e6c71 compiler-clang.h: don't redefine __SANITIZE_ADDRESS__
-  76638ac868b5 tcp: check the retransmit queue in tcp_retransmit_timer()
-  cf155283ff1c arm64: pass -maarch64linux to the linker
-  3b9f49eab3cd rcu: fix rcu_read_lock_sched_held() after the consolidated reader check backport
+  (no source changes)
