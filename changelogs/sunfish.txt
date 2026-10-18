@@ -1,31 +1,23 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261018-0058-sunfish-11.10-Unofficial.zip (2026-10-18 00:58 PDT)
-Changes since: 2026-10-15 19:17 PDT
+Build:  EvolutionX-16.0-20261018-0724-sunfish-11.10-Unofficial.zip (2026-10-18 07:24 PDT)
+Changes since: 2026-10-18 00:58 PDT
 
 project device/google/sunfish/
-  fbc499cc TEMP pr-test: extra apps and the baked KSU manager, as on ksu-3.4.1
-  047b5a6a sunfish: Bluetooth SoC, split A2DP and activity-manager boost props
-  6ec21c80 sunfish: zram zstd instead of lz4
-  35fea9fc sunfish: raise the GPU floor to 430 MHz on touch interaction
-  996e459b sunfish: build the kernel with Clang 20 (r547379)
-  e410cf9d Ship APEXes uncompressed
-  f16b57a4 sunfish: sepolicy: let mediaswcodec read the msm subsystem sysfs nodes
-  c8906d40 sunfish: thermal: declare the cooling devices pixel-thermal requests
-  b62f5dbd sunfish: let hvdcp_opti write the QG gauge state-of-health nodes
-  badad71a sunfish: exempt Device Health Services from background restrictions
-  5f0a7a2d sunfish: use the stock hwcomposer blob instead of building from sm8150 source
-  139d5848 sunfish: build all four RO partitions as EROFS
-  d738473f sunfish: Disable PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS
-  b583cc21 sunfish: Set FCM level to 7
-  b87ed7a6 sunfish: sepolicy: Implement health AIDL HAL.
-  3045df5c sunfish: update health HAL dependency
-  d2d7148e sunfish: Update health AIDL HAL to V3
-  e00fa371 sunfish: Update health AIDL HAL to V2
-  9c7e52f8 sunfish: vendor.charger-sunfish -> vendor.charger
-  ef89fc6d sunfish: Implement health AIDL HAL.
-  18017b8e sunfish: Switch BtAudio to AIDL
-  ebb02c8b sunfish: Use bluetooth.audio@2.1
-  b728f3c4 sunfish: Drop unused powerstats HAL
-  88560a6f sunfish: Kill dumpstate
-  47d984b5 sunfish: add com.google.hardware.pixel.display interface
+  0e6904e7 ksu-autoinstall: notify that a reboot activates staged module upgrades
+  e96737b0 revanced_yt_client.sh: also move phones on the default (visionOS) client
+  6e2fb6e0 sunfish: release transition keeps dropped preinstalls for existing users
+  dbf2167d sunfish: release builds leave out native libs of apps they do not ship
+  79b3990e release.txt: ship MicroG (ReVanced GmsCore) in public builds
+  e9bee97b ksu-autoinstall: ROM updates replace the unedited service.d script
+  190730cc data-adb-seed: move ReVanced YouTube off the visionOS stream client
+  99c5018a sunfish: schedutil hispeed points for both clusters
+  be57e2f4 sunfish: daily_clean.sh f2fs compression job, seeded into /data/adb
+  1736c790 sunfish: KernelSU module autoinstall and snapshot after a wipe
+  5711ed89 sunfish: extra apps from prebuilts/extra-apps, SUNFISH_RELEASE picks what ships
+  31c59cae sunfish: document AVB relocking and why Evo's fingerprint override stays
+  2745fde4 sunfish: f2fs compression on /data (zstd, compress_mode=user)
+  27affc87 sunfish: Updater OTA feed and changelog from github.com/i928/OTA
+  205711bd sunfish: SUNFISH_GAPPS=full|mini|none build switch
+  fb4a3e96 sunfish: ship ksud 3.4.1 and libadbroot for the /product KernelSU-Next manager
+  cdc13e57 sepolicy: let the kernel read and write the KSU overlay image
