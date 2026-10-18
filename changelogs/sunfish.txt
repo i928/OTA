@@ -1,11 +1,31 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261015-1917-sunfish-11.10-Unofficial.zip (2026-10-15 19:17 PDT)
-Changes since: 2026-10-15 15:26 PDT
+Build:  EvolutionX-16.0-20261018-0058-sunfish-11.10-Unofficial.zip (2026-10-18 00:58 PDT)
+Changes since: 2026-10-15 19:17 PDT
 
-project device/xiaomi/sm8250-common/
-  fea1cb4 sm8250-common: disable GL composition backpressure
-
-project frameworks/base/
-  bbe3aa75f DeviceConfigUtils: write only changed overrides; re-apply off the main thread
-  a0121fee8 pm: don't copy all packages per boot-scanned package for unused maps
+project device/google/sunfish/
+  fbc499cc TEMP pr-test: extra apps and the baked KSU manager, as on ksu-3.4.1
+  047b5a6a sunfish: Bluetooth SoC, split A2DP and activity-manager boost props
+  6ec21c80 sunfish: zram zstd instead of lz4
+  35fea9fc sunfish: raise the GPU floor to 430 MHz on touch interaction
+  996e459b sunfish: build the kernel with Clang 20 (r547379)
+  e410cf9d Ship APEXes uncompressed
+  f16b57a4 sunfish: sepolicy: let mediaswcodec read the msm subsystem sysfs nodes
+  c8906d40 sunfish: thermal: declare the cooling devices pixel-thermal requests
+  b62f5dbd sunfish: let hvdcp_opti write the QG gauge state-of-health nodes
+  badad71a sunfish: exempt Device Health Services from background restrictions
+  5f0a7a2d sunfish: use the stock hwcomposer blob instead of building from sm8150 source
+  139d5848 sunfish: build all four RO partitions as EROFS
+  d738473f sunfish: Disable PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS
+  b583cc21 sunfish: Set FCM level to 7
+  b87ed7a6 sunfish: sepolicy: Implement health AIDL HAL.
+  3045df5c sunfish: update health HAL dependency
+  d2d7148e sunfish: Update health AIDL HAL to V3
+  e00fa371 sunfish: Update health AIDL HAL to V2
+  9c7e52f8 sunfish: vendor.charger-sunfish -> vendor.charger
+  ef89fc6d sunfish: Implement health AIDL HAL.
+  18017b8e sunfish: Switch BtAudio to AIDL
+  ebb02c8b sunfish: Use bluetooth.audio@2.1
+  b728f3c4 sunfish: Drop unused powerstats HAL
+  88560a6f sunfish: Kill dumpstate
+  47d984b5 sunfish: add com.google.hardware.pixel.display interface
