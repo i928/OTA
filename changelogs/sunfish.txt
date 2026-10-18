@@ -1,23 +1,10 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261018-0724-sunfish-11.10-Unofficial.zip (2026-10-18 07:24 PDT)
-Changes since: 2026-10-18 00:58 PDT
+Build:  EvolutionX-16.0-20261018-1018-sunfish-11.10-Unofficial.zip (2026-10-18 10:18 PDT)
+Changes since: 2026-10-18 07:24 PDT
 
 project device/google/sunfish/
-  0e6904e7 ksu-autoinstall: notify that a reboot activates staged module upgrades
-  e96737b0 revanced_yt_client.sh: also move phones on the default (visionOS) client
-  6e2fb6e0 sunfish: release transition keeps dropped preinstalls for existing users
-  dbf2167d sunfish: release builds leave out native libs of apps they do not ship
-  79b3990e release.txt: ship MicroG (ReVanced GmsCore) in public builds
-  e9bee97b ksu-autoinstall: ROM updates replace the unedited service.d script
-  190730cc data-adb-seed: move ReVanced YouTube off the visionOS stream client
-  99c5018a sunfish: schedutil hispeed points for both clusters
-  be57e2f4 sunfish: daily_clean.sh f2fs compression job, seeded into /data/adb
-  1736c790 sunfish: KernelSU module autoinstall and snapshot after a wipe
-  5711ed89 sunfish: extra apps from prebuilts/extra-apps, SUNFISH_RELEASE picks what ships
-  31c59cae sunfish: document AVB relocking and why Evo's fingerprint override stays
-  2745fde4 sunfish: f2fs compression on /data (zstd, compress_mode=user)
-  27affc87 sunfish: Updater OTA feed and changelog from github.com/i928/OTA
-  205711bd sunfish: SUNFISH_GAPPS=full|mini|none build switch
-  fb4a3e96 sunfish: ship ksud 3.4.1 and libadbroot for the /product KernelSU-Next manager
-  cdc13e57 sepolicy: let the kernel read and write the KSU overlay image
+  3c080f79 revanced_yt_client.sh: wait for the user unlock before reading app data
+  8d6898b7 ksu-autoinstall: seed service.d from the script (--seed), not an rc sh -c
+  d025695d sunfish: release builds install the official KernelSU-Next manager as a user app
+  fdc6be61 sunfish: seed ksud from /system_ext, the official KernelSU-Next 3.4.2 build
