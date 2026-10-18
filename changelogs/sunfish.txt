@@ -1,10 +1,8 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261018-1018-sunfish-11.10-Unofficial.zip (2026-10-18 10:18 PDT)
-Changes since: 2026-10-18 07:24 PDT
+Build:  EvolutionX-16.0-20261018-1508-sunfish-11.10-Unofficial.zip (2026-10-18 15:08 PDT)
+Changes since: 2026-10-18 10:18 PDT
 
 project device/google/sunfish/
-  3c080f79 revanced_yt_client.sh: wait for the user unlock before reading app data
-  8d6898b7 ksu-autoinstall: seed service.d from the script (--seed), not an rc sh -c
-  d025695d sunfish: release builds install the official KernelSU-Next manager as a user app
-  fdc6be61 sunfish: seed ksud from /system_ext, the official KernelSU-Next 3.4.2 build
+  7d83fc10 release_hide_apps.sh: hide our baked manager once the official one is in
+  14f24989 revanced_yt_client.sh: also move ReVanced YouTube Music to Android VR
