@@ -1,6 +1,51 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261017_090505-UNOFFICIAL-crosshatch.zip (2026-10-17 02:04 PDT)
-Changes since: 2026-10-17 00:02 PDT
+Build:  lineage-23.2-20261018_214649-UNOFFICIAL-crosshatch.zip (2026-10-18 14:46 PDT)
+Changes since: 2026-10-17 02:04 PDT
 
-  (no source changes)
+project device/google/crosshatch/
+  8ed53a174 release_hide_apps.sh: hide our baked manager once the official one is in
+  9032f1cb6 revanced_yt_client.sh: also move ReVanced YouTube Music to Android VR
+  5f20eddcc revanced_yt_client.sh: wait for the user unlock before reading app data
+  3d2722eda ksu-autoinstall: seed service.d from the script (--seed), not an rc sh -c
+  c38b2f946 crosshatch: Updater changelog from the lineage-23.2 feed branch
+  edeee4d1f crosshatch: release builds install the official KernelSU-Next manager as a user app
+  e9625218c crosshatch: seed ksud from /system_ext, the official KernelSU-Next 3.4.2 build
+  8b8631c26 crosshatch: daily_clean.sh f2fs compression job and boot scripts, seeded into /data/adb
+  152d2b657 crosshatch: KernelSU module autoinstall and snapshot after a wipe
+  4388ce998 crosshatch: extra apps from prebuilts/extra-apps, CROSSHATCH_RELEASE picks what ships
+  674435eb9 crosshatch: CROSSHATCH_GAPPS=full|mini|none build switch
+  ec6e3bc76 crosshatch: ship ksud and libadbroot (3.4.2) for the /product KernelSU-Next manager
+  89dc436a5 crosshatch: sepolicy: dontaudit the KSU manager's /data/local/tests probe
+  a9afad6d2 crosshatch: sepolicy: let the kernel read and write the KSU overlay image
+  d9a95aab3 crosshatch: Updater feed and changelog from github.com/i928/OTA
+  46b24b22c crosshatch: put the build time in the OTA zip name
+  b87a7ad52 b1c1: fix lag while app opening and QS lags Signed-off-by: donjohanliebert <donjohanliebert@gmail.com>
+  a54e9f0d4 crosshatch: boot animation with skippable loop and outro
+  feb779308 crosshatch: f2fs compression on /data (zstd, compress_mode=user)
+  68e0102d0 crosshatch: bake in MindTheGapps
+  eed3afdfd crosshatch: EROFS for system_ext and product too, no GApps reserve
+  35b072859 b1c1: sepolicy: dontaudit audioserver/qtelephony prop reads, powerhal -> thermal (from floral 27aeb979, dc519324)
+  1fa3b384d b1c1: drop ro.apk_verity.mode (from floral 5e7cf0c7)
+  04a5cbd84 b1c1: overlay: config_screenBrightnessDoze to float (from floral 330802e8)
+  091373cd1 b1c1: overlay: drop COLOR_MODE_AUTOMATIC (from floral a06bb645)
+  092dfb849 b1c1: pinner files for Android 16 (from floral bf4c318e)
+  631c1ed41 b1c1: disable GL composition backpressure
+  9a9328c3f crosshatch: exempt Carrier Services from battery and data saver
+  13d3da5c3 crosshatch: CarrierSettings list follows sunfish's 2023 set (235 carriers)
+  f7fc3858c b1c1: link the tinyxml2 blob users against libtinyxml2-v34
+  ab13d7320 crosshatch: don't enforce VINTF kernel requirements
+  3d266f2a4 crosshatch: keep HIDL health.storage/power.stats 1.0 in framework matrix
+  80161e173 crosshatch: Set QTI_GPT_UTILS USE_BSG_FRAMEWORK as a bool
+  c66aae678 crosshatch: Drop the vendor/lineage framework matrix
+  f2242d4df crosshatch: Set livedisplay_sdm enable_dm as a bool
+  5811b1052 crosshatch: Include qcom wlan namespace
+  779144750 Ship APEXes uncompressed
+  fc84125a5 crosshatch: link the kernel with ld.lld (LTO with Clang 23)
+  d6ff50559 crosshatch: build the kernel with Clang 23 (r614150)
+  30d5ab293 crosshatch: convert system and vendor to EROFS
+
+project kernel/google/msm-4.9/
+  891c78426a61 ksu: trust the official KernelSU-Next manager (public builds)
+  8a304e531f43 ipv6: tcp/dccp: fix the arguments of __inet6_lookup_skb()
+  eff79aaf18c9 soc: qcom: pil: release the firmware descriptor of each segment
