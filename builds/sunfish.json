@@ -1,0 +1,18 @@
+[
+  {
+    "datetime": 1792760286,
+    "type": "UNOFFICIAL",
+    "version": "23.2",
+    "files": [
+      {
+        "filename": "lineage-23.2-20261023-UNOFFICIAL-sunfish.zip",
+        "os_patch_level": "2026-09-01",
+        "os_sdk_level": 36,
+        "sha256": "9d965257b3e4586d06fe58ce25d392123663c22d19537530b176c10b2b69e7bc",
+        "size": 1328725766,
+        "url": "https://sourceforge.net/projects/androidos/files/sunfish/lineage-23.2/lineage-23.2-20261023-UNOFFICIAL-sunfish.zip/download",
+        "ota_property_files": "payload_metadata.bin:3791:50243,payload.bin:3791:1328718737,payload_properties.txt:1328722586:155,apex_info.pb:1950:1242,care_map.pb:3239:505,metadata:69:674,metadata.pb:811:1091"
+      }
+    ]
+  }
+]
