@@ -1,6 +1,46 @@
 Evolution X -- unofficial build by i928
 Device: sunfish
-Build:  EvolutionX-16.0-20261022-1945-sunfish-11.10-Unofficial.zip (2026-10-22 19:45 PDT)
-Changes since: 2026-10-22 13:07 PDT
+Build:  EvolutionX-16.0-20261024-1756-sunfish-11.12-Unofficial.zip (2026-10-24 17:56 PDT)
+Changes since: 2026-10-22 19:45 PDT
 
-  (no source changes)
+project frameworks/base/
+  dc6fd6c7f907 DeviceConfigUtils: write only changed overrides; re-apply off the main thread
+  584ba3c6936e pm: don't copy all packages per boot-scanned package for unused maps
+  8ba685ea8f1d SleepMode: Wi-Fi follows use instead of staying off all night
+  8e93873a33ba ComponentResolver: keep activities in a HashMap
+  d1c5988577b6 BatteryStatsService: start power stats aggregation 2 minutes after boot
+  ee6cc7abfda0 WindowManager: don't hold boot on screen decoration overlays
+  e995323bf1ff SleepMode: keep Wi-Fi on by default
+  0c62f22fa390 SystemServer: drop the forced boot GCs
+  5680f40d12e7 PackageManager: keep /data app ABI across OTAs
+  83e29f144265 PackageManager: keep /data package parse cache across OTAs
+  28eaa833f829 BatterySaverStateMachine: restore sticky battery saver while plugged in
+  0b2ad82429a7 PowerManagerService: let battery saver be enabled while plugged in
+  036654061e6e SleepMode: keep the saved radio state across reboots
+  b0e8284ba9af BatterySaver: allow manual battery saver while plugged in
+  4c4bcccddc8c AudioService: use the 500 ms audio permission update delay on phones too
+  0975724a261a SystemUI: don't show the USB mode picker when a default is set
+
+project packages/apps/Evolver/
+  c0e747e New Crowdin updates
+
+project packages/apps/Settings/
+  f535d72a846 SleepMode: describe the use-aware Wi-Fi toggle
+  ce1a11ac023 SleepMode: default the Wi-Fi toggle to off
+  a145d8190a2 Settings: allow toggling battery saver while plugged in
+  41f3592faa7 Settings: redesign model page with Material 3 Expressive
+
+project packages/modules/Wifi/
+  80eb10f WifiConfigManager: re-enable PSK disabled by transition disable on load
+  fa60ecd WifiConfigManager: keep PSK on WPA3 transition disable when SAE upgrade is off
+
+project vendor/lineage/
+  d34e8d1 kernel: put clang on PATH and set CLANG_TRIPLE for clang-compiled kernels
+  7ba536c bootanimation: let the exit interrupt the part1 loop
+  33b5b9d bootanimation: rebuild the zip when desc.txt or the tarball changes
+  2f51eb7 bootanimation: let the exit skip the outro (part2)
+  bf64fee Revert "release: bp4a android.xr.xr_manifest_entries READ_WRITE (DISABLED)"
+  d7ab0f9 release: bp4a android.xr.xr_manifest_entries READ_WRITE (DISABLED)
+  60992c5 createjson: our SourceForge download path, version from the end of the name
+  bcb7f65 version: take the build timestamp from BUILD_DATETIME_FILE
+  4458795 version: include HH:MM in the OTA zip name
