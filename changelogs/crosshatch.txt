@@ -1,0 +1,774 @@
+Evolution X -- unofficial build by i928
+Device: crosshatch
+Build:  EvolutionX-16.0-20261025-1038-crosshatch-11.12-Unofficial.zip (2026-10-25 10:38 PDT)
+Changes since: 2026-10-18 10:38 PDT
+
+project bionic/
+  3c0a8b7 libc: posix_spawn: fall back when close_range(CLOSE_RANGE_CLOEXEC) fails
+
+project device/google/crosshatch/
+  16300cec crosshatch: drop GApps copies replaced by newer extra-apps
+  6fb8038c crosshatch: leave messenger out of /product too
+  19625090 crosshatch: leave map and tether out of /product
+  c10ebd94 crosshatch: drop kernel_google_b1c1 from evolution.dependencies
+  47ac22a1 crosshatch: CROSSHATCH_GAPPS owns TARGET_USES_MINI_GAPPS
+
+project device/google/sunfish/
+  f1aa76cd release.txt: ship the lowbatt KernelSU module
+  2bab99f0 use clang 23
+  7d83fc10 release_hide_apps.sh: hide our baked manager once the official one is in
+  14f24989 revanced_yt_client.sh: also move ReVanced YouTube Music to Android VR
+
+project frameworks/base/
+  dc6fd6c7f907 DeviceConfigUtils: write only changed overrides; re-apply off the main thread
+  584ba3c6936e pm: don't copy all packages per boot-scanned package for unused maps
+  8ba685ea8f1d SleepMode: Wi-Fi follows use instead of staying off all night
+  8e93873a33ba ComponentResolver: keep activities in a HashMap
+  d1c5988577b6 BatteryStatsService: start power stats aggregation 2 minutes after boot
+  ee6cc7abfda0 WindowManager: don't hold boot on screen decoration overlays
+  e995323bf1ff SleepMode: keep Wi-Fi on by default
+  0c62f22fa390 SystemServer: drop the forced boot GCs
+  5680f40d12e7 PackageManager: keep /data app ABI across OTAs
+  83e29f144265 PackageManager: keep /data package parse cache across OTAs
+  28eaa833f829 BatterySaverStateMachine: restore sticky battery saver while plugged in
+  0b2ad82429a7 PowerManagerService: let battery saver be enabled while plugged in
+  036654061e6e SleepMode: keep the saved radio state across reboots
+  b0e8284ba9af BatterySaver: allow manual battery saver while plugged in
+  4c4bcccddc8c AudioService: use the 500 ms audio permission update delay on phones too
+  0975724a261a SystemUI: don't show the USB mode picker when a default is set
+
+project kernel/google/msm-4.14/
+  5a64320175fa KernelSU-Next: uapi5 (5a21ddac) for KSU-Next 3.4.1
+  89bbf0736704 KernelSU-Next: sepol-nopin (43cebe8d)
+  c5dc8bb5a8b5 KernelSU-Next: policy-noio (4e77087c)
+  37e92d521486 fs/exec: run KSU adb_root on every exec, not only while the ksud hook is up
+  50c766934cb8 KernelSU-Next: bump to legacy-susfs-v2-3.4 (bd8c0572, UAPI 4)
+  b05cbf23914f mm: susfs: add SUS_MEMFD
+  1094d3995278 fs: susfs: add the KernelSU support layer
+  f2ec2e141457 sunfish_defconfig: enable NTFS
+  25275f334616 fs/exfat: add exFAT support
+  f589741ef7b3 fs: add NTFS3 (out-of-tree ntfs3 for 4.9)
+  bb8ee4fca0ab f2fs: fail checkpoint=disable fast at mount instead of GC
+  6252b4cddac2 f2fs: migrate the unaligned last extent of a swapfile too
+  544194d6cbd0 msm: vidc: keep lockdep out of firmware load in core init (debug only)
+  63527f7d8815 msm: vidc: unlock scratchbufs.lock again after putting reused buffers back
+  0bac8ad32680 msm: vidc: release scratch buffers without holding the scratchbufs lock
+  fc9577130e6e msm: camera: crm: nested lockdep annotation for req.lock in link teardown (debug only)
+  4f2999774ee3 msm: camera: crm: destroy the link workqueue without holding link->lock
+  91eab4612b44 msm: camera: jpeg: take hw_lock with irqsave outside the IRQ handler
+  7583925fa1c4 msm: camera: sync: nested lockdep annotation for child rows in group init
+  f01c774bb8d8 msm: camera: isp: own lockdep class for the ISP context lock
+  bf2d070d3c66 msm: camera: sync: take row_spinlocks with _bh in cam_sync_get_obj_ref
+  a6d8a612d4ac msm: camera: irq_controller: one lockdep class per controller (debug only)
+  af44b36eabec msm: camera: crm: notify link devices after dropping the link lock
+  f50f3f79b0af msm: camera: crm: separate lockdep subclass for the link lock during link setup (debug only)
+  7532faeddd70 ion: ion_query_heaps: copy_to_user after dropping dev->lock
+  de243b4f00f8 sched: is_sched_lib_based_app: don't block on the task's mmap_sem
+  bb1515be166a power: smb5: keep lockdep out of the USB port thermal zone read (debug only)
+  0b231f3e3f6e dsp: audio_cal_utils: one lockdep class per module for cal type locks
+  a2f07108836c dsp: afe: serialise memory maps with afe_mmap_lock, not afe_cmd_lock
+  18225ff69702 dsp: audio_cal_utils: import/release ION buffers outside cal_type->lock
+  9e8ddc6b05db Revert "dsp: afe: take afe_cmd_lock around cal_utils_set_cal() too"
+  805b1b6c78bb fscrypt: no filesystem reclaim in the one-time bounce pool allocation
+  6c42200b4554 dsp: afe: take afe_cmd_lock around cal_utils_set_cal() too
+  de6fdbcbf0ee dsp: audio_notifier: don't take notifier_mutex in service callbacks
+  02e9fffc600d cgroup: free cgroup_root via RCU; cset_cgroup_from_root() needs only css_set_lock
+  839cba455894 lpm-levels: use _rcuidle for the cluster and power-select tracepoints too
+  c4dd9c94232b msm: kgsl: take the dispatcher plist_lock with irqs disabled
+  57e7c3694d76 lockdep: larger chain and stack-trace tables
+  f0eb16e84c9b qcacld-3.0: hdd: look up the IPv4 address under RCU, return the value
+  ee40aad76eba drm/msm/sde: unregister the crtc power event after dropping crtc_lock
+  16593b86f467 qcacld-3.0: hdd: fix RCU-unsafe in_device/inet6_dev lookups
+  06a5a899320f ipv6: addrconf: don't allocate temp addresses with GFP_KERNEL in atomic context
+  2f6a2b206952 devfreq: bw_hwmon: own lock for governor registration
+  0578398860dd perf: core: separate lockdep subclass for pmus_lock in release (debug only)
+  4459bd745638 qcacld-3.0: hdd: don't wait for hdd_init_deinit_lock in open while the driver loads
+  e112cb71566c qcacld-3.0: txrx: flush peer_unmap_timer_work only if it was created
+  d2b1bc11b65d qcacmn: hif: take ce_index_lock with bh disabled in the remaining process-context paths
+  e978e4f0cf4c qcacmn: hif: take ce_index_lock with bh disabled when cancelling sends
+  4c834f31dbb2 net: rmnet: own lockdep classes for the rmnet virtual devices
+  516458bcf109 qdf: one lockdep class per qdf_mutex_create() call site
+  0fbaa9758d0b qdf: one lockdep class per qdf_spinlock_create() call site
+  e47ed3b17991 ALSA: pcm: take timer->lock before runtime_lock in detach_substream
+  a001dfbe1479 dsp: audio_notifier: keep lockdep out of PDR registration (debug only)
+  b723db936c42 dsp: q6afe: keep lockdep out of afe_alloc_cal's buffer import (debug only)
+  5d728fc90ea3 msm: camera: req_mgr: own lockdep class for irq-mode workqs
+  0473d0475f06 mm: mm_event: irq-safe vmstat_lock and period_lock writers
+  74661f869497 diag: close peripheral transports outside cntl_lock
+  9883eb7cecdf drm/msm/sde: own spinlock for the crtc frame_event_list
+  ed0d8b10a597 drm/msm/sde: one lockdep class per power handle
+  2165fe0829c7 devfreq: one lockdep class per devfreq for event_lock too
+  67fe4b917d44 devfreq: one lockdep class per devfreq
+  418c1c4bac20 lpm-levels: use the _rcuidle cpu_idle tracepoints
+  db05cf64a893 cpuset: take the hotplug lock before cpuset_mutex everywhere
+  3c18f5802bad extcon: initialize the blocking notifier heads
+  5f916bdaba0d regulator: one lockdep class per regulator_dev
+  90113ae80d60 pmic-voter: one lockdep class per votable
+  80e9fe5928b0 ipc_logging: take context_lock with irqs off in ipc_log_context_destroy()
+  137c23d8eb0c thermal: of: own lockdep class for virtual sensor zones
+  be96bf89e2f0 debug_locks: on when a lock debugging option is built in
+  207cf69e86c1 net: dev_recursion_level() uses this_cpu_read()
+  47a2cc9e78c6 qdf: print leaked allocations only where the printer exists
+  bda180842a16 sunfish debug variants: enable DEBUG_FS; finish the gpio dump revert
+  32148d51bd77 lockdep: lock_is_held()/lock_is_held_type() take a const lockdep_map
+  f86786f402dc gpio.h: keep the msm_gpio_dump stub inside the include guard
+  711d250bafb0 Makefile: drop the tree-wide -Wno-error for discarded qualifiers
+  a7358ac262c7 rcu: give rcu_trace_lock_map its own lock class
+  cc7ca87343f2 qdf: correct stubs for the debloated qdf_mem/qdf_mc_timer
+  f154063c6d78 gpio, power_util: replace the misplaced dump stubs
+  c9cfc0e19588 sunfish: build the SUNFISH_KERNEL_DEBUG kernel variants
+  b5ceb8b20b05 qcacld-3.0: always signal UMAC stop completion
+  6c5f4908f080 defconfig: disable CONFIG_TRACE_GPU_MEM
+  51969fae116e defconfig: sunfish: disable CONFIG_SCSI_UFSHCD_CMD_LOGGING
+  0a8ddbb83798 qcacmn: Disable all of qdf_trace when WLAN_DEBUG is disabled
+  438ba536db7b qcacld: continue in disabling logging features
+  c7c404a0482c qcacld: disable more debugging
+  4320801faaf7 qcacld: disable some debug and logging features
+  a88e8eeb6cbd fs: remove remaining android_fs tracings
+  48910cb556e9 f2fs: remove additional tracings added by CAF
+  cdeac9b27e21 Revert "ARM: dts: msm: Add coresight nodes for sdmmagpie"
+  dc53d62a0096 GKI: ARM: dts: msm: disable coresight for atoll/sdmmagpie/sm6150/sm8150/trinket
+  c9fa710ec39f Disable Adreno Driver Logging
+  2ee8042d3356 msm: msm_bus: Kill transaction logging functionality
+  9a2c1c493800 Revert "arm64: dts: sm7150: Add registers to DCC dump"
+  a77ce1bba082 Revert "Perf: arm64: Add Snapshot of perf tracepoints"
+  9e6e72bb0cf0 sunfish_defconfig: update the EROFS per-cpu kthread comment
+  7272f6532037 f2fs: let f2fs_kvmalloc() fall back to vmalloc on 4.14
+  624965778ca6 f2fs: redirty_blocks: use read_mapping_page() on 4.14
+  b97292860cee Makefile: take the clang --target from CLANG_TRIPLE when it is set
+  857d2208d272 techpack: comply with clang 23
+  dddd0df0a54a floral_defconfig: enable EROFS
+  b7a1d9e68c77 floral_defconfig: disable CONFIG_SLUB_DEBUG so qcacld-3.0 links
+  b6472f872d35 arm64: csum: Fix OoB access in IP checksum code for negative lengths
+  f42200c9b8f2 arm64: csum: Disable KASAN for do_csum().
+  0b660a75c530 arm64: csum: Fix pathological zero-length calls
+  7f8a5ffc16c1 arm64: Implement optimised checksum routine
+  b87502c4e620 sunfish: extend clang CFLAGS with crypto, crc, lse and fp16
+  877db4c8da59 ANDROID: fs/fuse: Keep FUSE file times consistent with lower file
+  77da5b5b65f9 drm/msm/sde: Introduce KCAL color control
+  0de3890130d1 drm/msm/sde: Split HSIC application
+  d0306fecc94d ANDROID: fuse/passthrough: API V2 with __u32 open argument
+  9db472d785df FROMLIST: fuse: Introduce passthrough for mmap
+  e7fb2983064b FROMLIST: fuse: Use daemon creds in passthrough mode
+  d09e25e7f92d FROMLIST: fuse: Handle asynchronous read and write in passthrough
+  e3a8ec1f4616 FROMLIST: fuse: Introduce synchronous read and write for passthrough
+  f7077ce0f5ac FROMLIST: fuse: Passthrough initialization and release
+  7386ff9de5ca FROMLIST: fuse: Definitions and ioctl for passthrough
+  a56e895eda3a cpufreq: schedutil: Use the frequency below the target if they're close
+  4525bdf5ee67 drm/msm/sde: Do not limit maximum for zpos property
+  115c11924f86 msm: camera: Stub out the camera_debug_util API and compile it out
+  b98e37a312e0 BACKPORT: binderfs: add extended_error feature entry
+  05d4c5921a27 defconfig: initialize locals with zeroes
+  af0501aa16f1 BACKPORT: locking/rtmutex: Skip remove_waiter() when waiter is not enqueued
+  075401aa2199 sys_ptrace: reset ptrace_message on ptrace_check_attach
+  f5a40bf96754 HACK: qca-wifi-host-cmn: undef __free
+  360ee78795c6 HACK: mm/bootmem: undef __free
+  1c4e455b5478 BACKPORT: futex/requeue: Prevent NULL pointer dereference in remove_waiter() on self-deadlock
+  aec9f19899dc BACKPORT: rtmutex: Use waiter::task instead of current in remove_waiter()
+  00d3b4777a63 PM / sleep: Don't allow s2idle to be used
+  4a4e1fcf0dec PM / suspend: Use deepsleep instead of s2idle
+  b2bb1e9eb5fa proc: replace seq_printf on seq_putc to speed up /proc/pid/smaps
+  b89d64ef2ed4 qcacmn: Remove leftover debug function
+  6d8bfce69d90 qcacld: Fix uninitalized spinlock usage
+  9067178fe039 UPSTREAM: drivers: soc: qcom: Fix per_cpu declaration of pending_ipi
+  c69b36476b1e mm/thp: make is_huge_zero_pmd() safe and quicker
+  58c75682f2c1 msm: bus_arb: disable debug logging
+  b1449c2fe4ec cpuidle: lpm-levels: Allow exit latencies equal to target latencies
+  c4a1cec0e855 ANDROID: block: Improve shared tag set performance
+  f36cf3c0ff35 sched/fair: Remove throughput optimization that keeps tasks on big CPUs
+  ca5f85f011c1 zram: use copy_page for full page copy
+  a66a5f77cb61 mm: Tweak memory pressure for 8/12GB RAM devices
+  3252f7e60110 cpuidle: enter_state: Don't needlessly calculate diff time
+  5816d96ca919 xxhash: inline round() functions
+  de2a2fcc8be1 xxhash: replace copy_state() wrappers with macros
+  64292c71dd1b PM / freezer: Reduce freeze timeout to 1 second for Android
+  e1dc5340261d msm: vidc: Remove pm_qos usage
+  dba60ef5a8c9 qcacld-3.0: Fix uninitialized tsf_op_resp usage on error
+  8408589a63a1 selinux: Reduce calls to context_struct_to_string()
+  00738c7815ed selinux: Remove audit dependency
+  fb6ad01622d4 arm64: inline some spinlock functions
+  6863975ce89b ida: Lock the IDA in ida_destroy
+  1bd8b7a6bda6 qcacld-3.0: Fix regulatory domain country names.
+  3e2122c5c509 android: binder: fix a kernel-doc enum warning
+  757aab45d32f binder: fix trivial typo of binder_free_buf_locked()
+  8860e6b70d8c binderfs: fix typo in binderfs.c
+  54dabf984c46 BACKPORT: binderfs: Drop unused #include <linux/radix-tree.h>
+  2349134b0842 android: fix W=1 kernel-doc warnings
+  8077751d0c85 binder: remove unneeded size check code
+  01106a4baaee binderfs: remove unused INTSTRLEN macro
+  78b10b8631de binder: remove unused binder_alloc->buffer_free
+  b4b6031405f5 binder: fix trivial kernel-doc typo
+  e986b3cfdba1 BACKPORT: binderfs: add support for feature files
+  8478caaa970b qcacld-3.0: Do not force the compilation of DFS debugging
+  7a6553ad9d87 msm: adreno: Relax CPU latency requirements to save power
+  75f2f61fef52 msm: sde: Remove tracing completely
+  41b7a60ca36d drm/msm/sde: Don't allocate memory dynamically for CRTC atomic check
+  9c8aa0bf0680 irq: Don't allow IRQ affinities to be set from userspace
+  d26dfbb1f28c qcacld-3.0: Disable auto IRQ affinity feature
+  a2d03cfda8e2 drm: sde: Increase sde stage to map zpos changes
+  8585ca62df7a proc: use kvzalloc for our kernel buffer
+  8a3699d35a58 kernel/hung_task.c: make type annotations consistent
+  a6d1c1cc1456 fs/fs-writeback.c: adjust dirtytime_interval_handler definition to match prototype
+  af8457db0627 fork: adjust sysctl_max_threads definition to match prototype
+  1be3ba4db782 ipv6: ndisc: adjust ndisc_ifinfo_sysctl_change prototype
+  892314f1cba6 random: fix an incorrect __user annotation on proc_do_rointvec
+  56482ab59a79 net/sysctl: use cpumask_parse in flow_limit_cpu_sysctl
+  36cf547e9299 net/sysctl: remove leftover __user annotations on neigh_proc_dointvec*
+  a78fedc03835 irqchip: qcom: pdc: Don't overwrite IRQ domain name on init
+  dead11d0ea60 msm: camera: Remove nonsensical register reads in cam_vfe_fe_reg_dump()
+  caa89f999477 Makefile.lib: Stop calling size_append
+  07347e3f1cbb char: adsprpc: Don't create debugfs at init when CONFIG_DEBUG_FS=n
+  c5500dff7495 ARM64: dts: sdmmagpie: Remove unused 36 MiB memdump region
+  674f26d83af5 sunfish: defconfig: disable EROFS per-cpu decompression kthreads
+  7e55fc2fe496 timer: Convert schedule_timeout() to use from_timer()
+  abe6c1ba0603 timer: add a CFI-aware timer_setup_on_stack()
+  a5dc50d46348 mm: /proc/pid/smaps_rollup: convert to single value seq_file
+  46b71a99a605 mm/pkeys, powerpc, x86: Provide an empty vma_pkey() in linux/pkeys.h
+  c90cd8fc8698 mm/pkeys: Add an empty arch_pkeys_enabled()
+  06efba191672 mm: /proc/pid/smaps: factor out common stats printing
+  3441c8d24e6a mm: /proc/pid/smaps: factor out mem stats gathering
+  7063ffa7bd59 f2fs: reduce expensive checkpoint trigger frequency
+  8ea923c578f8 f2fs: clean up f2fs_abort_atomic_write()
+  0d273e0102ff f2fs: fix null-ptr-deref in f2fs_get_dnode_of_data
+  daf34da0325e f2fs: revive F2FS_IOC_ABORT_VOLATILE_WRITE
+  19aa7f58be69 f2fs: fix to check inline_data during compressed inode conversion
+  4b32b565a2cc f2fs: kill volatile write support
+  7e9db5dfed25 msm: kgsl: Wake GPU upon receiving an ioctl rather than upon touch input
+  3c58c38b0a27 msm: kgsl: Remove L2PC PM QoS feature
+  af9ef925b4d0 msm: kgsl: Remove POPP
+  2abe653e0017 erofs: Add a bunch of missing includes
+  8067c791a678 BACKPORT: erofs: fix lz4 inplace decompression
+  0de0e556f387 UPSTREAM: erofs: fix an error code in z_erofs_init_zip_subsystem()
+  6b73e5f1fa39 BACKPORT: erofs: add per-cpu threads for decompression as an option
+  f3b2f5ad4e6b BACKPORT: locking: Introduce __cleanup() based infrastructure
+  1a9af1929285 msm: camera: properly kill debug logging
+  8e2b3fadac24 FROMLIST: psi: stop relying on timer_pending for poll_work rescheduling
+  115bb0f33459 psi: Fix PSI_MEM_FULL state when tasks are in memstall and doing reclaim
+  2ef79690942e psi: Fix race between psi_trigger_create/destroy
+  38079ea2e137 psi: Fix psi state corruption when schedule() races with cgroup move
+  74cd1b472dc2 sched,psi: Handle potential task count underflow bugs more gracefully
+  97eb66d59436 psi: Reduce calls to sched_clock() in psi
+  f611d4a0c7c0 psi: Optimize task switch inside shared cgroups
+  7e29ade120b6 psi: Pressure states are unlikely
+  73fdfb0bcdb3 psi: Use ONCPU state tracking machinery to detect reclaim
+  189bd0b916ed psi: Add PSI_CPU_FULL state
+  aa6adceb5d9d psi: eliminate kthread_worker from psi trigger scheduling mechanism
+  62b561f49944 psi: Move PF_MEMSTALL out of task->flags
+  b3d51239ea4f psi: Optimize switching tasks inside shared cgroups
+  b4d9951f9e14 psi: Fix cpu.pressure for cpu.max and competing cgroups
+  2b653381e553 cpuidle: lpm-levels: Remove idle prediction feature
+  be649b579bf6 BACKPORT: sched: promote nodes out of CONFIG_SCHED_DEBUG
+  8087c1829a8c sched: Fix rq->nr_iowait ordering
+  657a1a86b63f sched: Fix race against ptrace_freeze_trace()
+  c64e9ff56586 sched: Fix loadavg accounting race
+  b2362b0c2fbc sched/core: Fix ttwu() race
+  fefab79b53cc smp: Optimize send_call_function_single_ipi()
+  c65af6b832a1 sched/core: Offload wakee task activation if it the wakee is descheduling
+  f81dbff70536 sched/core: Optimize ttwu() spinning on p->on_cpu
+  4b789041e720 sched/core: Fix preempt warning in ttwu
+  6841eada22bb sched/core: Optimize try_to_wake_up() for local wakeups
+  085583fb1dba BACKPORT: binder: add BINDER_GET_EXTENDED_ERROR ioctl
+  f02d7b6857c0 proc: less memory for /proc/*/map_files readdir
+  66141b75670f procfs: add seq_put_hex_ll to speed up /proc/pid/maps
+  55781e5b6435 proc: add seq_put_decimal_ull_width to speed up /proc/pid/smaps
+  5173da29bbe1 bpf: Avoid allocating small buffers for map keys and values
+  e0ebcb54e905 treewide: remove remaining _no_log() usage
+  0f8bdca8b0d4 drm/msm/sde: Consolidate IRQ status reads into IRQ dispatcher
+  34fd17074a3e msm: ais: Stub out the camera_debug_util API and compile it out
+  9d47ab70ae27 BACKPORT: net: Fix Kconfig indentation, continued
+  686ba38ec18b UPSTREAM: bpf: Add sockmap hooks for UDP sockets
+  243c1ad11e95 UPSTREAM: bpf, sockmap: Allow skipping sk_skb parser program
+  ea50e74592ac mailbox: qcom-rpmh: Remove debug cruft
+  cce5ce051192 msm: ipa: Fix compile errors when debugfs is disabled
+  a76caab9ab99 techpack: audio: fix build errors without DEBUG_FS
+  17e2a13d4f16 techpack: rmnet: Fix compilation errors
+  33dca47f8bee ASOC: Remove support for ANC headphones
+  a7a5e3f0d8cd techpack: audio: Fix stub functions declarations
+  b2763ac6b0a8 rpmsg: glink: Get reference of channel objects in rx path
+  290fd81d3cc9 msm: kgsl: sensor: Proper handling of race condition in util api
+  ffae48659024 audio-kernel: Add changes in multiple files to unblock CR's
+  c1f2b40b0d77 asoc: codec: update SOC_SINGLE_SX_TLV to SOC_SINGLE_S8_TLV
+  ad1451b493f6 Makefile: Remove -fno-builtin cflag
+  6b6d0906a0cf f2fs: remove unneeded check condition in __f2fs_setxattr()
+  883f96c50e9c f2fs: use onstack pages instead of pvec
+  21b55b1f26b8 f2fs: handle decompress only post processing in softirq
+  ec1e2be3b47d f2fs: fix to do sanity check on segment type in build_sit_entries()
+  07492af586f4 f2fs: introduce sysfs atomic write statistics
+  fb57f81d8ad2 f2fs: adjust zone capacity when considering valid block count
+  3cec8efff2f5 f2fs: introduce memory mode
+  699aa702a4ef f2fs: avoid infinite loop to flush node pages
+  fccb33bd1df5 f2fs: replace F2FS_I(inode) and sbi by the local variable
+  2f1000f81973 f2fs: add f2fs_init_write_merge_io function
+  29665448dcd0 f2fs: avoid unneeded error handling for revoke_entry_slab allocation
+  593b86633225 f2fs: do not stop GC when requiring a free section
+  5a09d80fb4c9 f2fs: keep wait_ms if EAGAIN happens
+  0f5f705d9037 f2fs: introduce f2fs_gc_control to consolidate f2fs_gc parameters
+  662f0cfe2f7f f2fs: change the current atomic write way
+  f96a304e22f4 f2fs: keep io_flags to avoid IO split due to different op_flags in two fio holders
+  596eb9c6e614 f2fs: give priority to select unpinned section for foreground GC
+  805d06e30d26 f2fs: don't set GC_FAILURE_PIN for background GC
+  35ae10f0614b arm64: Disable HAVE_HW_BREAKPOINT to remove __schedule() overhead
+  0b9b3b4e34d8 arm64: use WFE for long delays
+  f238cf6a47c9 arm_arch_timer: Expose event stream status
+  e927a1903eaa arm64: clear_page() shouldn't use DC ZVA when DCZID_EL0.DZP == 1
+  02b4187e974d arm64: lib: Annotate {clear, copy}_page() as position-independent
+  4784e27809ab lpm-levels: Don't stop the tick if it's not beneficial
+  22fc32e81de1 cpuidle: lpm-levels: Fix panics when CONFIG_MSM_IDLE_STATS=n
+  f5ac62b37aee sched: idle: Optimize the generic idle loop by removing needless memory barrier
+  b24b33b1f9b8 sbalance: Fix systemic issues caused by flawed IRQ statistics
+  f6f6ba5d3ed6 arm64: Disable GENERIC_IRQ_EFFECTIVE_AFF_MASK
+  e0a461f84f02 kernel: Introduce SBalance IRQ balancer
+  1e46e093143b Makefile/LTO: optimize loop unrolling opt
+  960307dd0634 drivers: gpu: drm: msm: dsi-staging: trigger drm notifier
+  0e62cfd01909 mmc: disable SPI CRC
+  0fe2ddd76b64 dma-buf/sync_file: Speed up ioctl by omitting debug names
+  975a713a9a31 selinux: Avoid dynamic memory allocation for temporary scontext buffers
+  af56aa7bd229 msm: kgsl: Avoid dynamically allocating small command buffers
+  9e388ba167a1 msm-adreno-tz: Get rid of the suspend lock
+  2c9665ba915a sched/core: Optimize sched_feat() for !CONFIG_SCHED_DEBUG builds
+  6484454814cc arm64: bpf: optimize modulo operation
+  940f7c312eec net: sched: do not emit messages while holding spinlock
+  991e244210f0 drm/msm: dsi-staging: Reduce verbosity of logging
+  476e382bef9f drm/msm: sde: Reduce verbosity of logging
+  ad5347597193 drm/msm/sde: Don't clear dim layers when there aren't any applied
+  3bd78d079a9d drm/msm/sde: Don't allocate memory dynamically for plane states
+  745a196a1d82 drm/msm/sde: Skip prefill calculations on command mode panels
+  f3853eca77df drm/msm/sde: Skip heavy autorefresh checks when it's not enabled
+  607036b70539 disp: msm: dsi: Don't busy wait
+  83ffbc1f5b21 drm/msm/sde: Cache register values when performing clock control
+  9853acc15811 drm/msm: Remove bogus NULL check in _msm_drm_commit_work_cb()
+  48956466febc disp: sde: vsync_info: Only read wr ptr count
+  8a438087fc19 drm/msm/sde: Skip unneeded register reads when getting write line count
+  47380f0316a0 drm: msm: Send 2 DSC slices per DSI packet
+  9c951c2ef623 gpu: drm: msm: remove unused variables used for tracing/debugging
+  86624eb8123d arm64: lib: unexport memset from asm
+  7acadf741441 arm64: lib: memset: checkout to linux-next
+  174686ca5de3 arm64: Rewrite __arch_clear_user()
+  a7a57ae26386 arm64: Better optimised memchr()
+  63401830251e arm64: lib: update memcmp, str{cmp,len,ncmp} from linux-next
+  89015998af30 arm64: asm: Add new-style position independent function annotations
+  f58dc9cbb1dc linkage: Introduce new macros for assembler symbols
+  ebb4cf5d3d6b linkage: add generic GLOBAL() macro
+  ac2e578b3ce3 linux/linkage.h: replace VMLINUX_SYMBOL_STR() with __stringify()
+  d02b0b14ca5b drivers:wireless:cnss: Don't mandate NL80211_TESTMODE driver
+  4e0682318fd6 cnss: Do not mandate TESTMODE for netlink driver
+  8f625f94253d drm/msm/sde: Remove debug print from sde_reg_write()
+  ae71bbc86722 net: sch_generic: Remove unnecessary watchdog warning
+  915ea4c580d9 msm: vidc: Disable all debugging
+  d915b161d555 drm: Stub out debug prints
+  baa4164b231c gpu: drm: msm: sde: stub out logging macros
+  d3b66159fd87 mm/vmstat: increase vmstat interval to 20 seconds
+  869e89dbb3f5 cpumask: Add optimized helpers when NR_CPUS fits in a long
+  e8be745871f2 sched/fair: Compile out NUMA code entirely when NUMA is disabled
+  2dab1c4d5b97 block,cfq: Disable logging if trace is not enabled
+  e0176b6456f4 lib: Disable debug_locks
+  cf7e7bfb71c2 lib: Omit debug/tracing drivers when debug is disabled
+  af6e7efd9101 adreno: Stop reading registers just for debugging
+  e0eb2ae8f1b5 power_supply: don't allocate attrname
+  3186d5b45772 msm: rotator: Constify formats table
+  d585f6ac5d43 drm: Make drm debug loggers noop
+  5bf48e182fc4 disp: Drop debug register reads
+  00e5d02a2590 msm: sps: Guard IPC logging
+  6488337391f3 dwc3: core: compile out ipc logging conditionally
+  4afa8620345c clk: qcom: mdss: Omit support for unused PLLs
+  489e73bba6fb scsi: ufs: fix build without cmd logging
+  4d091ce89505 gpu: drm: msm: allow power off DSI PHY
+  15cbecf1c75a uid_sys_stats: Remove dependency on the profiling subsystem
+  5d79b77d989d profiling: Implement a simple task exit notifier when disabled
+  e89891fe19a4 cpufreq_schedutil: remove tracing
+  0fc06ce535c1 npu: Don't create debugfs dir when !CONFIG_DEBUG_FS
+  421c14cdb518 posix-clock: posix-clock: Fix unbalanced locking in pc_clock_settime()
+  cc0d1eed6820 posix-clock: Fix missing timespec64 check in pc_clock_settime()
+  c9851f237f59 drm/msm/sde: use first vblank event to trigger early wakeup
+  f2f3835b549c qcedev: vote for crypto clocks during module close
+  9daae0354f3e dsp: asm: validate payload size before access
+  dae62100e036 ion/msm: move msm_ion_init to async probe
+  28f82916bd1c BACKPORT: msm: adsprpc: Allocate buffer taking NULL byte into consideration
+  f1cbc9265a99 ASoC: msm-pcm-routing-v2: Fix non-blocking if-statement warning
+  145eef2998fa msm: ipa4: Fix to mask the global interrupt INT1
+  dcafcde6d96d drm/msm/dp: remove dp post_open call as callback notifier
+  d1346bd70e59 msm: adsprpc: Fix for hyp_assign_phys double call
+  42665e7790b9 msm: ADSPRPC: Update unsigned pd support on cDSP from kernel
+  255a2348c255 msm: ADSPRPC: Handle third party applications
+  9472ca4cd673 msm: ADSPRPC: Substitute vfs check with flags
+  515c994c6ca2 msm: ipa: clear the ipa pipeline before any ep config
+  3724c686df1f Asoc: check for invalid voice session id
+  0d4a3db0b9be scripts/dtc: Update to upstream version v1.4.6-21-g84e414b0b5bc
+  39b7f8b48139 BACKPORT: block: use ktime_get_ns() instead of sched_clock() for cfq
+  40a415a0b0b8 crypto: arm64/aes-ce-ccm - move kernel mode neon en/disable into loop
+  8d60858cdda5 ARM64: configs: sunfish: Disable EDAC
+  4c4c65bd45db ARM64: configs: sunfish: Disable CPUSS Dumping
+  85fb5889c85e add and enable wireguard
+  10df44e53634 ANDROID: kbuild: speed up ksym_dep_filter
+  bb4c1c1f69a1 soc: qcom: subsys-pil-tz: use memcpy_toio() for pil_init_image_trusted()
+  a492053666b5 scripts/mkcompile_h: Omit every informations inside parentheses
+  fa4684e76fe2 scripts: Omit any URLs on compiler and linker information
+  9b75a7c5c061 scripts: Always use precompiled binary
+  30f214c6d3ec ANDROID: scripts/Kbuild: Force lld usage when LLVM=1 is used
+  cb7a70bbb515 msm: kgsl: Use DMA APIs for memory pool cache maintenance
+  8d7ea4a713a1 arm64: lib: Import latest version of Arm Optimized Routines' strncmp
+  ad32d75dfbce arm64: lib: Import latest version of Arm Optimized Routines' strcmp
+  4b26962175c9 arm64: Import latest version of Cortex Strings' strncmp
+  f57a1e944582 arm64: Import updated version of Cortex Strings' strlen
+  4969d1e48e36 arm64: Import latest version of Cortex Strings' strcmp
+  daa4b668c374 arm64: Import latest version of Cortex Strings' memcmp
+  08040c605f94 arm64: crypto: add NEON accelerated XOR implementation
+  9913bf7dd0b2 arm64/neon: Disable -Wincompatible-pointer-types when building with Clang.
+  1325373a7c70 arm64/neon: Add workaround for ambiguous C99 stdint.h types.
+  4674e624466a msm: npu: Remove debugfs
+  f1340792b1b3 net: qualcomm: rmnet: flush uplink aggregation on priority tx
+  8cadac39a296 arm64: lib: crc32: always assume ARM64_HAS_CRC32
+  a765624b083e arm64: lib: accelerate crc32_be
+  1a6f329e92d3 lib/crc32: remove unneeded casts
+  ac5f2ab4f394 lib/crc: Use consistent naming for CRC-32 polynomials
+  90d65e3092a5 lib/crc: Move polynomial definition to separate header
+  7f9be4248fb6 soc: qcom: Remove tracing
+  bc35f84ece9a arm64: lib: Consistently enable crc32 extension
+  7d24e35620ae arm64: crc32: always assume ARM64_HAS_CRC32
+  13a39d52aeb7 arm64/lib: add accelerated crc32 routines
+  e8f278c4a79d gpu: msm: Disable adreno snapshot, coresight and trace
+  30d5b4e3cee3 Revert "msm: kgsl: Add gpu_frequency tracepoint to power trace system"
+  f3df76c4b83b Revert "msm: kgsl: Add gpu_frequency trace during SLUMBER entry and exit"
+  57e5de4a941c msm: kgsl: Use lock-less list for page pools
+  a56c45392d45 msm: kgsl: Avoid busy waiting for fenced GMU writes
+  37f49f91bbf3 msm: kgsl: Remove unneeded time profiling from ringbuffer submission
+  6d49703c0e34 msm: kgsl: Omit code for GPUs other than Adreno 6xx
+  0f866606bea3 f2fs: remove obsolete whint_mode
+  52a8fa276f40 f2fs: replace congestion_wait() calls with io_schedule_timeout()
+  ae286c821d41 f2fs: introduce data read/write showing path info
+  7ce0cc5123df f2fs: pass the bio operation to bio_alloc_bioset
+  472348ef6ac4 f2fs: fix to invalidate META_MAPPING before DIO write
+  06c9ac6f85fb ext4: remove additional tracings added by CAF
+  10eca5bd5a53 soc: qcom: Remove tracing
+  b3d61c23ca57 acct: perform last write from workqueue
+  878946ca4787 netlink: Fix rmem check in netlink_broadcast_deliver().
+  eb37a3600188 netlink: make sure we allow at least one dump skb
+  1eab8132448d netlink: Fix wraparounds of sk->sk_rmem_alloc.
+  9283851c94fd fs/proc: fix compile warning about variable 'vmcore_mmap_ops'
+  e8d673b64647 cpufreq: governor: Fix negative 'idle_time' handling in dbs_update()
+  df35031fb99e llc: do not use skb_get() before dev_queue_xmit()
+  ef065d4a9ac5 ext4: fix FS_IOC_GETFSMAP handling
+  b4a54c7107a8 defconfig: sunfish: Disable unused clock drivers
+  32033d3e6a6c lib/Kconfig.debug: Remove debug dependency from SCHED_STACK_END_CHECK
+  04b9b2378546 firmware: qcom: Guard another debugfs dependency
+  fc60dc6e3afd firmware: qcom: Remove debugfs dependency from tz-log driver
+  5e611ded05ea wakeup: Use procfs when debugfs is unavailable
+  4727df1a82fe icnss: Only use CONFIG_DEBUG_FS for creation debugfs file
+  08ba6e36bba4 icnss: Don't create debugfs when ICNSS_DEBUG and DEBUG_FS is disabled
+  52c0724b139c cnss_prealloc: Don't create debugfs at init when CONFIG_DEBUG_FS=n
+  722d66e619fc drivers: tty: Skip msm_geni_serial_debug_init() when CONFIG_DEBUG_FS=n
+  f44779222a94 media/uvc: optionally compile debug
+  fc97abe8663c media/usb: uvc: Fix build when uvc_debugfs.c is not compiled
+  f78f474142a3 diag: Fix compile errors when CONFIG_USB_QTI_DIAG_BRIDGE is disabled
+  843ebfc0cc9f thermal: tsens: Fix compile errors when debugfs is disabled
+  49d86100cc23 clk: Fix compile errors when debugfs is disabled
+  b1c019979905 net/cnss_prealloc: Guard debugfs bits with CONFIG_DEBUG_FS Silences:
+  f2370522e1a0 msm_geni_serial: Don't create dbg dir when !CONFIG_DEBUG_FS
+  2f3c9f4749a7 npu: Don't create debugfs dir when !CONFIG_DEBUG_FS
+  ee1dbe6102c9 msm: qcedev: Don't bail out when debugfs creation fails
+  3ee4b1fc2d8a msm: ipa: remove redefinition with DEBUG_FS
+  e7aba247bcd1 Makefile: Increase LTO inline limit
+  73ff600e9245 arm64: dts: sm6150: disable watchdog during suspend
+  a9bfa8b8c1fa kconfig/lxdialog: Make main() return 0
+  55e11ecf23b1 techpack: audio: 4.0: Fix usage of empty prototypes
+  9de8177cf8a9 techpack: audio: 4.0: Do not attempt to build wcd934x
+  c5fb837b836e soc: qcom: bam_dmux: Skip disconnect call on bootup
+  e5b5b343d260 arm64: dts: qcom: Delete mem-offline node to fully disable PASR
+  9bb571c43461 ASoC: bolero-cdc: Fix unitialized rwsem usage
+  1f3f373c971a rpmsg: bgcom: out of bound read from process_cmd
+  801de73b0bb7 disp: sde_crtc: add early_wakeup_show function
+  85fa5785767f FROMLIST: fuse: 32-bit user space ioctl compat for fuse device
+  f241354d6212 FROMLIST: fs: Generic function to convert iocb to rw flags
+  a81446dd172e UPSTREAM: fs: add RWF_APPEND
+  d8ca3bfddce8 rpmsg: glink: reset should_wakeup before calling system wakeup
+  34c63366965d rpmsg: glink: add dev_pm_ops for tracking no irq phase
+  26f79d3ef327 soc: qcom: add dev_pm_ops for tracking no irq phase
+  29c3c71d00b2 rpmsg: glink: Use IRQF_NO_SUSPEND and pm_system_wakeup() for glink irq
+  2aac7b5b3f1d power: smb1390-psy: Fix casting to int
+  bf08770b74c4 ANDROID: dm-bow: Drop SECTOR_SIZE redefinition
+  cc1a7a919dca ASoC: msm-audio-effects-q6-v2: Add BPF order check
+  94126d85d4d8 dsp: q6afe: Add check for fbsp state
+  4dfa8c86cf6d msm-4.19: Compilation fix for SDLLVM toolchain 16.0
+  41652f7305f6 drivers: rmnet_perf: Fix strict-prototypes error
+  4d21729c4b17 arm: configs: Enable QCOM_SHOW_RESUME_IRQ module for mdm9607
+  89d38b7a646b ANDROID: fuse: Allocate zeroed memory for canonical path
+  940dc623bb79 mdm: dataipa: increase the size of prefetch buffer
+  823cc3b9c182 soc: qcom: minidump: check the size parameter passed to qcom_smem_get()
+  b25d576fc4f5 ASoC: msm-pcm-q6-v2: Add dsp buf check
+  b0c585251c87 dsp: q6core: Avoid OOB access in q6core
+  20363e4df767 mfd: qcom-spmi-pmic: Add remove API
+  7019cca4ac18 rpmsg: glink: Remove dev_set_name to avoid KASAN issue
+  8a8eafb87496 dsp: add lock in ion free to avoid use after free
+  11146f7c3cc6 ASoC: Fix overflow error in routing driver
+  1edb8a347d2c usb: f_fs: Avoid invalid pointer access in ffs_fs_get_tree
+  74cf31c913fc mmc: sdhci-msm: Fix array-index-out-of-bounds
+  6ff66dc3185a msm: camera: Fix trivial misleading indentation warnings
+  1b59561ac449 lib/nlattr.c: Fix warning due to incorrect strlen() variable type
+  6d1f275603e9 ASoC: dsp: msm-dts-srs-tm-config: Fix trivial unguarded pr_debug()
+  42f4c05013e7 ASoC: dsp: amrwb_in: Fix AUDIO_GET_AMRWB_ENC_CONFIG ioctl
+  c5bbcf6a07a3 msm: ipa: Fix size check in ipa_debugfs_enable_disable_drop_stats()
+  30cb9f51adb7 msm: ipa: Refactor buffer size check in ipa3_write()
+  5baa2ada2e71 msm: vidc: Fix uninitialized tag_data usage
+  30b1b9d00aa5 soc: snd_event: Declare is_snd_event_fwk_enabled func static
+  882441fd72ba soc: pinctrl-lpi: Initialise at late_initcall
+  e240b8514097 techpack: audio: Load sm6150 configuration for sm6150 and sdmmagpie
+  c4a820de0aaf msm: vidc: fix cts failure issues
+  a85037940661 msm: ipa: fix to NULL terminate the pointer
+  ce9d272c8a9d msm: ais: reqmgr: Avoid freeing subdev twice
+  70fd532993e6 ARM: dts: msm: Added EEPROM support for TOF sensor
+  9a42abd65310 msm: npu: Avoid buffer overflow when handling get_property packet
+  d74f3c0eeaae asoc: changes to fix KW errors
+  6a4d9e80c9fe scripts/dtc: add fdt_overlay.c and fdt_addresses.c to sync script
+  3aea6517ad6d crypto: arm64/aes-blk - add 4 way interleave to CBC-MAC encrypt path
+  7598c1c6349e techpack: audio: Remove pm_qos usage
+  e478fd9d2e49 techpack: audio: wcd: disable debugfs failed errors
+  65ef6ed39882 drivers: remove a few loggers
+  dfa3670f06cf f2fs: Lower reclaim segment and threshold
+  7a6249ff97c1 ARM64: dts: sm6150: Disable unhandled or broken IRQ monitoring
+  13749edf4699 kernel: time: reduce ntp wakeups
+  eb7c9c00e348 arm64: debug: Disable JTAG debugging by default
+  461f39439b72 sched/idle: Micro-optimize the idle loop
+  f07513130d06 crypto: arm64 - Consistently enable extension
+  5ba45776af2b usb: uvs: Remove debugfs
+  315394f459f0 msm: npu: Remove debugfs
+  b9b4e1e335df msm: npu: Fix format specifier warnings
+  d600bce8f4fa net: qualcomm: rmnet: Add changes from msm-4.19
+  f9f8685af47b net: qualcomm: rmnet: Fix incorrect allocation flag in receive path
+  82bd2c98d2a4 net: rmnet: fix lower interface leak
+  e4ea29588a79 net: qualcomm: rmnet: move null check on dev before dereferecing it
+  22e2db619c8b alarmtimer: Minimize wakeup time
+  196c1f2771d5 fs: default to noatime
+  4ddb4a81b44b irq: spurious: Disable IRQ debugging by default
+  8fe4c9e9970f arm64: cpufeature: Add missing system feature for CRC32 instructions
+  13d6845af9b0 lib/crc32: Make crc32_be weak for arch override
+  28dbe84d5653 lib/crc32.c: Mark crc32_le_base/__crc32c_le_base aliases as __pure
+  7fe5d8516fde lib/crc32: Make core crc32() routines weak so they can be overridden
+  007b646b1a11 ASoC: dsp: q6afe: Fix uninitialized th_vi_v_vali variable usage
+  99d2ee75e972 ASoC: dsp: voice_mhi: Fix uninitialized variable usage
+  f0310c05789f ASoC: codecs: Fix uninitialized variable usage
+  7c724146081a rcu: fix a performance regression
+  1a6f97085ab9 dsp: Fix improper mutex unlock in afe close
+  17da6b659811 net: Prevent useless userpace spam
+  0517563d63b3 kernel/irq: silence irq no longer affine to cpu logspam
+  8125c44aa6d2 binder: Stub out debug prints by default
+  c7b407c3b47a msm: bus_arb: Disable debug logging
+  aba0e216a367 arm64: Kconfig: select HAVE_FUTEX_CMPXCHG
+  0678a612b935 ARM64: enable GENERIC_FIND_FIRST_BIT
+  d37938967e43 arm64: Select ARCH_HAS_FAST_MULTIPLIER
+  394aad444beb ANDROID: kbuild: avoid excessively long argument lists
+  a5804727d4c3 rmnet: Disable logging
+  dbf663f1e748 msm: vidc: disable debug logs
+  7e394fd1dc0e msm: kgsl: Avoid flooding kernel log with invalid ioctl errors
+  7890c78a58dc locking/osq: Use optimized spinning loop for arm64
+  e8ce3459f9c0 arm64: cpufeature: add feature for CRC32 instructions
+  10dd9d43a36a binder: set binder_debug_mask=0 to suppress logging
+  05fcd85d7a53 msm: kgsl: Convert from nr_indirectly_reclaimable_bytes to nr_kernel_misc_reclaimable
+  f5315e1a79aa msm: kgsl: Don't try to wait for fences that have been signaled
+  2e43263ee795 msm: kgsl: Report correct GPU frequency in sysfs
+  fee0b13de07a f2fs: fix to update i_ctime in __f2fs_setxattr()
+  8baed48560b8 f2fs: prevent kernel warning due to negative i_nlink from corrupted image
+  8d71dbf6ea73 f2fs: use d_inode(dentry) cleanup dentry->d_inode
+  57d2fe80af52 f2fs: fix to do sanity check on sbi->total_valid_block_count
+  a8ccda0cd77f f2fs: intorduce f2fs_all_cluster_page_ready
+  580f29a7b861 f2fs: do not allow to decompress files have FI_COMPRESS_RELEASED
+  de302194f6e6 f2fs: do not set compression bit if kernel doesn't support
+  d364b02af59e f2fs: remove device type check for direct IO
+  797a15e9f2e9 f2fs: fix fallocate to use file_modified to update permissions consistently
+  f432ae11d7b6 vfs: introduce file_modified() helper
+  25b57138234d f2fs: obsolete unused MAX_DISCARD_BLOCKS
+  f58b14bd662b f2fs: fix to avoid use f2fs_bug_on() in f2fs_new_node_page()
+  508da98131fb f2fs: fix to remove F2FS_COMPR_FL and tag F2FS_NOCOMP_FL at the same time
+  278ca57c7f67 f2fs: invalidate meta pages only for post_read required inode
+  2a80356ec243 f2fs: allow compression of files without blocks
+  e8ff4d777ce9 f2fs: fix to invalidate META_MAPPING before DIO write
+  e3bd350cac9e f2fs: enforce single zone capacity
+  c875fef13f04 f2fs: remove redundant code for gc condition
+  b1d45be36eff f2fs: initialize page_array_entry slab only if compression feature is on
+  2ecb594cea97 f2fs: optimize error handling in redirty_blocks
+  26d27ec6e587 f2fs: do not skip updating inode when retrying to flush node page
+  120300bdd857 f2fs: attach inline_data after setting compression
+  eba3562af64a f2fs: fix to tag gcing flag on page during file defragment
+  b9dc2268c5a9 f2fs: allow compression for mmap files in compress_mode=user
+  816db5cf1725 f2fs: fix typo in comment
+  8707af17074d f2fs: make f2fs_read_inline_data() more readable
+  01fa65757270 f2fs: fix to do sanity check for inline inode
+  0ec900b70af0 f2fs: don't use casefolded comparison for "." and ".."
+  6d8c211029c7 f2fs: reject test_dummy_encryption when !CONFIG_FS_ENCRYPTION
+  fdf4c00626a9 f2fs: don't need inode lock for system hidden quota
+  1d7dc6e5a6cc f2fs: stop allocating pinned sections if EAGAIN happens
+  97d52dd7f1a1 f2fs: skip GC if possible when checkpoint disabling
+  027a9f1ee55e f2fs: fix to do sanity check on total_data_blocks
+  c7a345cdee3a f2fs: fix deadloop in foreground GC
+  9ecd2f6c73fa f2fs: fix to avoid f2fs_bug_on() in dec_valid_node_count()
+  d445320ef732 f2fs: write checkpoint during FG_GC
+  69c22ffb0a7f f2fs: fix to clear dirty inode in f2fs_evict_inode()
+  81fec4f0bc1a f2fs: extend stat_lock to avoid potential race in statfs
+  7d8fb5277166 f2fs: use flush command instead of FUA for zoned device
+  415d2bf0cee4 f2fs: remove WARN_ON in f2fs_is_valid_blkaddr
+  0a948510ca14 f2fs: replace usage of found with dedicated list iterator variable
+  b8559e8d61c4 f2fs: Remove usage of list iterator pas the loop for list_move_tail()
+  aed3ac57d0bc f2fs: fix dereference of stale list iterator after loop body
+  a922f68d944e f2fs: fix to do sanity check on inline_dots inode
+  da9ebb250077 f2fs: don't pass a bio to f2fs_target_device
+  d8f9a111bf77 f2fs: avoid an infinite loop in f2fs_sync_dirty_inodes
+  f793dd2f8a22 f2fs: remove unnecessary f2fs_lock_op in f2fs_new_inode
+  60812e1e3746 f2fs: check pinfile in gc_data_segment() in advance
+  d23cae164dc1 drivers: clk: Fix unused-variable warning
+  68c690d55fc6 soc: qcom: msm_bus: Remove events tracing
+  23e341b5a169 drivers: iommu: Remove debug depedencies
+  36fee03e078d net: netfilter: Remove tracing depedencies
+  6deb1997009a ext4: optimize file overwrites
+  21586e7daa4d dma-buf: fix timeout handling in dma_resv_wait_timeout v2
+  a63d9ec7ed6d proc: Clear the pieces of proc_inode that proc_evict_inode cares about
+  60157707ce43 arm64: Restrict pagetable teardown to avoid false warning
+  28fd2a97ce80 Bluetooth: L2CAP: Fix L2CAP MTU negotiation
+  4090b2cece99 ovl: Check for NULL d_inode() in ovl_dentry_upper()
+  80a321d742e4 arm64/ptrace: Fix stack-out-of-bounds read in regs_get_kernel_stack_nth()
+  11933f69e072 mm/huge_memory: fix dereferencing invalid pmd migration entry
+  269143ddaac1 selinux: fix selinux_xfrm_alloc_user() to set correct ctx_len
+  0fed1950884b tcp: always seek for minimal rtt in tcp_rcv_rtt_update()
+  22eccad272b7 cpufreq: Force sync policy boost with global boost on sysfs update
+  35b5b4e23b99 mm: fix ratelimit_pages update error in dirty_ratio_handler()
+  b408bc0c0684 ext4: fix calculation of credits for extent tree modification
+  6ca1d16e07b6 configfs: Do not override creating attribute file failure in populate_attrs()
+  42368fa6a18a fs/filesystems: Fix potential unsigned integer underflow in fs_name()
+  86681fe49b37 perf/core: Fix broken throttling when max_samples_per_tick=1
+  34dc5cbf9fae coredump: fix error handling for replace_fd()
+  3ed1ed7c4dcc mm/page_alloc.c: avoid infinite retries caused by cpuset race
+  16e1078ca3b7 __legitimize_mnt(): check for MNT_SYNC_UMOUNT should be under mount_lock
+  8efc1a93defe pinctrl: devicetree: do not goto err when probing hogs in pinctrl_dt_to_map
+  3ad810e84b1e posix-timers: Add cond_resched() to posix_timer_add() search loop
+  fe2a2b8da9f6 kbuild: fix argument parsing in scripts/config
+  06ad65e0a32f ext4: reorder capability check last
+  522c4aff5388 tools/build: Don't pass test log files to linker
+  85e41f190057 dql: Fix dql->limit value when reset.
+  3c8a534ba1a3 kconfig: merge_config: use an empty file as initfile
+  dd412a1cc581 cgroup: Fix compilation issue due to cgroup_mutex not being exported
+  04eace2f3371 dma-mapping: avoid potential unused data compilation warning
+  8d8d15f54b45 do_umount(): add missing barrier before refcount checks in sync case
+  18ecd40e1a7b irqchip/gic-v2m: Add const to of_device_id
+  c79c1a3d3436 kbuild: Add '-fno-builtin-wcslen'
+  3a4a28c08c71 Bluetooth: hci_uart: Fix another race during initialization
+  242a36fd19a8 PCI: Fix reference leak in pci_alloc_child_bus()
+  17ff89d1567b of/irq: Fix device node refcount leakages in of_irq_init()
+  0fd1c08f1207 of/irq: Fix device node refcount leakage in API irq_of_parse_and_map()
+  4f913d66d559 mm: add missing release barrier on PGDAT_RECLAIM_LOCKED unlock
+  22cf67758003 jbd2: remove wrong sb->s_sequence check
+  8b9010306056 ext4: fix off-by-one error in do_split
+  01120ab54ab5 drm: allow encoder mode_set even when connectors change for crtc
+  2be5f535772b Bluetooth: hci_uart: fix race during initialization
+  c5a609726ae5 ext4: protect ext4_release_dquot against freezing
+  c81d2e7df584 perf: arm_pmu: Don't disable counter in armpmu_add()
+  76e83d08dba2 ipv6: fix omitted netlink attributes when using RTEXT_FILTER_SKIP_STATS
+  e0ce4ec663aa sched/deadline: Use online cpus for validating runtime
+  10201077bf55 fs/procfs: fix the comment above proc_pid_wchan()
+  cd2bdfdb2bb7 lib: 842: Improve error handling in sw842_compress()
+  613af2f3c05e lockdep: Don't disable interrupts on RT in disable_irq_nosync_lockdep.*()
+  bef2c82c57b2 netfilter: socket: Lookup orig tuple for IPv6 SNAT
+  66855d4df81f ARM: 9351/1: fault: Add "cut here" line for prefetch aborts
+  81c76f8b1684 ARM: 9350/1: fault: Implement copy_from_kernel_nofault_allowed()
+  a4a9115ac073 Bluetooth: Fix error code in chan_alloc_skb_cb()
+  c3ec1a463883 hwmon: fix a NULL vs IS_ERR_OR_NULL() check in xgene_hwmon_probe()
+  6576a21156b0 wifi: nl80211: reject cooked mode if it is set along with other flags
+  edf6a607838a wifi: cfg80211: regulatory: improve invalid hints checking
+  ff9bca13c337 kernel/acct.c: use dedicated helper to access rlimit values
+  a09374608a33 kernel/acct.c: use #elif instead of #end and #elif
+  745c754d2859 sched/core: Prevent rescheduling when interrupts are disabled
+  2c1a9efbc656 perf/core: Fix low freq setting via IOC_PERIOD
+  304ac2b417b5 ftrace: Avoid potential division by zero in function_stat_show()
+  b49d648bb5d1 acct: block access to kernel internal filesystems
+  fe5ea5751932 driver core: bus: Fix double free in driver API bus_register()
+  846805ee8b3d neighbour: delete redundant judgment statements
+  9038cebf18ec arm64: cacheinfo: Avoid out-of-bounds write to cacheinfo array
+  981d0f85f916 sched: Don't try to catch up excess steal time.
+  45fc577ce1ec net: fix data-races around sk->sk_forward_alloc
+  25707c11fd9d ipv6: avoid possible NULL deref in rt6_uncached_list_flush_dev()
+  9e2f07a332b6 block: fix ordering between checking BLK_MQ_S_STOPPED request adding
+  b9dd5127f9a5 Bluetooth: Fix type of len in rfcomm_sock_getsockopt{,_old}()
+  2642fae78628 tty: ldsic: fix tty_ldisc_autoload sysctl's proc_handler
+  724bea7b942d ext4: supress data-race warnings in ext4_free_inodes_{count,set}()
+  84cb3a089f32 power: supply: core: Remove might_sleep() from power_supply_put()
+  c722c12051ac acpi/arm64: Adjust error handling procedure in gtdt_parse_timer_block()
+  90731af21cfb mm: process_reclaim: consider compound pages
+  f7a26dfc56b4 dsp: q6lsm: revert Check size of payload before access
+  8422601a83d4 dsp: audio_notifier: Defer external notifier registration if not inited
+  1dfdb709eb40 soc: add check condition before enabling irq
+  9f5a2c0e4a1a drivers: usb_bam: Fix misleading indentation warnings
+  31bb6bfa949a msm: camera: sensor: Handling race condition in util api
+  9518aa66389b msm-4.19: Compilation fix for SDLLVM toolchain 16.0
+  065c5b59ac88 drivers: cpuidle: lpm-levels: Correct missing list initialize
+  212136904229 disp: msm: sde: add check to fix null pointer dereference
+  3474cd0a3010 Revert "mm: backing-dev: Take a reference to the bdi in use to prevent UAF"
+  a75dbd101abb Revert "rpmsg: glink: Remove IRQF_NO_SUSPEND"
+  a3cd0df22006 do_change_type(): refuse to operate on unmounted/not ours mounts
+  106c176a572f jbd2: fix data-race and null-ptr-deref in jbd2_journal_dirty_metadata()
+  59f17dd7a6de module: ensure that kobject_put() is safe for module type kobjects
+  75689c847004 sctp: detect and prevent references to a freed transport in sendmsg
+  be11c354bf03 sch_htb: make htb_qlen_notify() idempotent
+  81b961b141f6 netlabel: Fix NULL pointer exception caused by CALIPSO on IPv4 sockets
+  a91209c251e9 usb: Add checks for snprintf() calls in usb_alloc_dev()
+  1a67b8d89942 tracing: Fix use-after-free in print_graph_function_flags during tracer switching
+  3268348e58be dm: restrict dm device size to 2^63-512 bytes
+  d313babc899b mm/page_alloc: fix uninitialized variable
+  69d0b70839b1 pfifo_tail_enqueue: Drop new packet when sch->limit == 0
+  5f3aad550ed4 ext4: ignore xattrs past end
+  8eac8f6f1738 net: bridge: xmit: make sure we have at least eth header len bytes
+  7c1009f1774e security/keys: fix slab-out-of-bounds in key_task_permission
+  24951cd45828 dsp: q6lsm: Check size of payload before access
+  505d3a1794c0 msm: vidc: Release cvp buffer lock in invalid buffer case
+  265a8a896ab5 msm: vidc: Fix possible UAF during buffer unregister call
+  dac5d207644a ASoC: msm-audio-effects-q6-v2: Add BPF order check
+  a1f1213e2f56 dsp: q6lsm: Check size of payload before access
+  bb373c25a464 ipv4: use RCU protection in rt_is_expired()
+  eb90a9270015 ipv4: use RCU protection in inet_select_addr()
+  1c7cf1de7523 ipv6: use RCU protection in ip6_default_advmss()
+  d5fdf5a55b2e ndisc: use RCU protection in ndisc_alloc_skb()
+  f2e8a7c63f7b arp: use RCU protection in arp_xmit()
+  6dde6631c9fe ndisc: extend RCU protection in ndisc_send_skb()
+  fb2ac70815cb net: add dev_net_rcu() helper
+  34f4f0306ade net: treat possible_net_t net pointer as an RCU one and add read_pnet_rcu()
+  f754aed75f99 ipvs: Always clear ipvs_property flag in skb_scrub_packet()
+  73a9e714ad2e msm: npu v1: Fix OOB issue in IPC between driver and firmware
+  aab086b33bd3 binder: fix memory leaks of spam and pending work
+  8622cb2e590c soc: qcom: qmi_encdec: out of bound check for input buffer
+  4e74d7e7fb2a dsp: q6asm: Add check for ADSP payload size
+  469281ccda96 msm: camera: memmgr: Avoid TOCTOU buffer access on multiple use of same fd
+  047ff22444c6 msm: camera: reqmgr: Validate the link handle
+  74a0b2fce274 BACKPORT: FROMLIST: mm: protect free_pgtables with mmap_lock write lock in exit_mmap
+  3947322b9103 BACKPORT: block: add sync_blockdev_range()
+  32c7cf7a3947 qcacld-3.0: Fix implicit enum-enum-cast warnings
+  3800b0401255 add f2fs compression add fscompress after fstabe.hardware checkpoint=fs to activate, need factory reset
+  f279d7674697 sunfish: fix msm-4.14 build under Android 16 toolchain
+
+project kernel/google/msm-4.9/
+  962d2b60a KernelSU-Next 3.4.1 + SUSFS for non-GKI 4.9
+
+project packages/apps/Evolver/
+  c0e747e New Crowdin updates
+
+project packages/apps/Settings/
+  f535d72a846 SleepMode: describe the use-aware Wi-Fi toggle
+  ce1a11ac023 SleepMode: default the Wi-Fi toggle to off
+  a145d8190a2 Settings: allow toggling battery saver while plugged in
+  41f3592faa7 Settings: redesign model page with Material 3 Expressive
+  f43679bd085 Settings: firmwareversion: give the About phone logo a holographic look
+  d4cb7e1b71c Settings: Backport app icon from CP31.260618.005
+  c0b1e6db19b Revert "Settings: Bring in the new icon"
+
+project packages/modules/Connectivity/
+  66bd6ba netd: socket create and bind hooks on 4.9 kernels (optional variants)
+
+project packages/modules/Wifi/
+  80eb10f WifiConfigManager: re-enable PSK disabled by transition disable on load
+  fa60ecd WifiConfigManager: keep PSK on WPA3 transition disable when SAE upgrade is off
+
+project vendor/lineage/
+  d34e8d1 kernel: put clang on PATH and set CLANG_TRIPLE for clang-compiled kernels
+  7ba536c bootanimation: let the exit interrupt the part1 loop
+  33b5b9d bootanimation: rebuild the zip when desc.txt or the tarball changes
+  2f51eb7 bootanimation: let the exit skip the outro (part2)
+  bf64fee Revert "release: bp4a android.xr.xr_manifest_entries READ_WRITE (DISABLED)"
+  d7ab0f9 release: bp4a android.xr.xr_manifest_entries READ_WRITE (DISABLED)
+  60992c5 createjson: our SourceForge download path, version from the end of the name
+  bcb7f65 version: take the build timestamp from BUILD_DATETIME_FILE
+  4458795 version: include HH:MM in the OTA zip name

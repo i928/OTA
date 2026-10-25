@@ -1,0 +1,24 @@
+{
+  "response": [
+    {
+      "maintainer": "",
+      "currently_maintained": false,
+      "oem": "",
+      "device": "",
+      "filename": "EvolutionX-16.0-20261025-1038-crosshatch-11.12-Unofficial.zip",
+      "download": "https://sourceforge.net/projects/androidos/files/crosshatch/android16/EvolutionX-16.0-20261025-1038-crosshatch-11.12-Unofficial.zip/download",
+      "timestamp": 1792949913,
+      "md5": "ccc5a053d9820b289600a2875ad81eba",
+      "sha256": "4b7d74a38235be53b8ee53bae3dcd1390659e22fdcfdf70a9fa2c72d7a8a528d",
+      "size": 3367365320,
+      "version": "11.12",
+      "buildtype": "userdebug",
+      "forum": "",
+      "firmware": "",
+      "paypal": "",
+      "github": "",
+      "initial_installation_images": [],
+      "extra_images": []
+    }
+  ]
+}
