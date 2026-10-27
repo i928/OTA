@@ -1,90 +1,182 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261025_011921-UNOFFICIAL-crosshatch.zip (2026-10-24 17:56 PDT)
-Changes since: 2026-10-23 00:10 PDT
+Build:  lineage-23.2-20261026_231813-UNOFFICIAL-crosshatch.zip (2026-10-26 16:14 PDT)
+Changes since: 2026-10-24 17:56 PDT
+
+project device/google/crosshatch/
+  2a36ce139 BoardConfig: EROFS pcluster 256k -> 16k
 
 project device/google/sunfish/
-  15db71c4 sunfish: put the build time in the OTA zip name
-  236beae2 sunfish: Fix lag while app opening and QS lags
-  86e1587e sunfish: Enable full ART optimizations with VDEX/ODEX
-  7781fb2a sunfish: Speed profile services and wifi-service to reduce RAM and storage
-  1b7d290d sunfish: Enable ADPF CPU hints for improved UI performance
-  24a151b9 sunfish: Explicitly disable "Enable GL comp backpressure"
-  1a264294 release.txt: ship the lowbatt KernelSU module
-  82d5b12b release_hide_apps.sh: hide our baked manager once the official one is in
-  52a60461 revanced_yt_client.sh: also move ReVanced YouTube Music to Android VR
-  ae68f46b revanced_yt_client.sh: wait for the user unlock before reading app data
-  476bb0d1 ksu-autoinstall: seed service.d from the script (--seed), not an rc sh -c
-  b405b36d sunfish: release builds install the official KernelSU-Next manager as a user app
-  080d8a5d sunfish: seed ksud from /system_ext, the official KernelSU-Next 3.4.2 build
-  72d4ced6 ksu-autoinstall: notify that a reboot activates staged module upgrades
-  21f3086b revanced_yt_client.sh: also move phones on the default (visionOS) client
-  9fbd4315 sunfish: release transition keeps dropped preinstalls for existing users
-  31e95ea4 sunfish: release builds leave out native libs of apps they do not ship
-  c73361a4 release.txt: ship MicroG (ReVanced GmsCore) in public builds
-  6194edb9 ksu-autoinstall: ROM updates replace the unedited service.d script
-  a16a9756 data-adb-seed: move ReVanced YouTube off the visionOS stream client
-  33a85e28 sunfish: schedutil hispeed points for both clusters
-  abb84555 sunfish: daily_clean.sh f2fs compression job, seeded into /data/adb
-  673d9742 sunfish: KernelSU module autoinstall and snapshot after a wipe
-  2b2a0beb sunfish: extra apps from prebuilts/extra-apps, SUNFISH_RELEASE picks what ships
-  10a2c4e4 sunfish: f2fs compression on /data (zstd, compress_mode=user)
-  2c9b0f32 sunfish: bake in MindTheGapps, SUNFISH_GAPPS=full|mini|none
-  9ac9b545 sunfish: ship ksud 3.4.1 and libadbroot for the /product KernelSU-Next manager
-  3e09ceb5 sepolicy: let the kernel read and write the KSU overlay image
-  36c2f893 sunfish: Updater feed and changelog from github.com/i928/OTA
-  db91959f sunfish: build the kernel with Clang 23 (r614150)
-  c857b299 sunfish: build all four RO partitions as EROFS
-  a8b9223f sunfish: Bluetooth SoC, split A2DP and activity-manager boost props
-  2d4b7fb3 sunfish: zram zstd instead of lz4
-  d30bd8b3 sunfish: raise the GPU floor to 430 MHz on touch interaction
-  3230896a Ship APEXes uncompressed
-  ed3a7f2b sunfish: sepolicy: let mediaswcodec read the msm subsystem sysfs nodes
-  f2c104c0 sunfish: thermal: declare the cooling devices pixel-thermal requests
-  74b93437 sunfish: let hvdcp_opti write the QG gauge state-of-health nodes
-  fee3b374 sunfish: exempt Device Health Services from background restrictions
-
-project frameworks/base/
-  3eadaf9ab292 ComputerEngine: allow ReVanced GmsCore signature spoofing
-  688893d1295e PackageManager: keep /data package parse cache across OTAs
-  b7bc948b9628 pm: don't copy all packages per boot-scanned package for unused maps
-  6208a33bcc53 ComponentResolver: keep activities in a HashMap
-  e4bd901e8bce BatteryStatsService: start power stats aggregation 2 minutes after boot
-  3ce3cbaf2896 WindowManager: don't hold boot on screen decoration overlays
-  c17ca4dae1cd PackageManager: keep /data app ABI across OTAs
-  c73e57698bd6 BatterySaverStateMachine: restore sticky battery saver while plugged in
-  7411eb6e8614 PowerManagerService: let battery saver be enabled while plugged in
-  2d7646d1b218 BatterySaver: allow manual battery saver while plugged in
-  a7b29af7d36b AudioService: use the 500 ms audio permission update delay on phones too
-
-project frameworks/native/
-  82b2a9bbbb installd: run in the top-app cpuset and boost group
-
-project frameworks/opt/telephony/
-  53bc7ad2fe RIL: log requests unsupported by the radio HAL once, at debug level
+  6152ca22 sunfish: put the build time in the OTA zip name
+  3d8f3d13 sunfish: Fix lag while app opening and QS lags
+  4730e783 sunfish: Enable full ART optimizations with VDEX/ODEX
+  3867504b sunfish: Speed profile services and wifi-service to reduce RAM and storage
+  5cb2ef32 sunfish: Enable ADPF CPU hints for improved UI performance
+  513fa6c0 sunfish: Explicitly disable "Enable GL comp backpressure"
+  81af9795 release.txt: ship the lowbatt KernelSU module
+  0b54634a release_hide_apps.sh: hide our baked manager once the official one is in
+  83195cb3 revanced_yt_client.sh: also move ReVanced YouTube Music to Android VR
+  5fd62af4 revanced_yt_client.sh: wait for the user unlock before reading app data
+  da1a9698 ksu-autoinstall: seed service.d from the script (--seed), not an rc sh -c
+  46707435 sunfish: release builds install the official KernelSU-Next manager as a user app
+  dbfdfa52 sunfish: seed ksud from /system_ext, the official KernelSU-Next 3.4.2 build
+  ed1283ef ksu-autoinstall: notify that a reboot activates staged module upgrades
+  77c13b65 revanced_yt_client.sh: also move phones on the default (visionOS) client
+  8e0cb900 sunfish: release transition keeps dropped preinstalls for existing users
+  43009372 sunfish: release builds leave out native libs of apps they do not ship
+  ca49c635 release.txt: ship MicroG (ReVanced GmsCore) in public builds
+  b79e6121 ksu-autoinstall: ROM updates replace the unedited service.d script
+  0191f9ad data-adb-seed: move ReVanced YouTube off the visionOS stream client
+  b5e4bf1a sunfish: schedutil hispeed points for both clusters
+  e709725c sunfish: daily_clean.sh f2fs compression job, seeded into /data/adb
+  789fe7c4 sunfish: KernelSU module autoinstall and snapshot after a wipe
+  0da22af3 sunfish: extra apps from prebuilts/extra-apps, SUNFISH_RELEASE picks what ships
+  ab7b7049 sunfish: f2fs compression on /data (zstd, compress_mode=user)
+  7c2d0cf6 sunfish: bake in MindTheGapps, SUNFISH_GAPPS=full|mini|none
+  54d5e071 sunfish: ship ksud 3.4.1 and libadbroot for the /product KernelSU-Next manager
+  f05d7915 sepolicy: let the kernel read and write the KSU overlay image
+  6fe91e22 BoardConfig: EROFS pcluster 256k -> 16k
 
 project kernel/google/msm-4.9/
-  38fab51c2b10 UPSTREAM: bpf: Handle BPF_EXIST and BPF_NOEXIST for LPM trie
-  9dbd51e624f0 UPSTREAM: bpf: Mark bpf_spin_{lock,unlock}() helpers with notrace correctly
-  7536feecb5a4 UPSTREAM: bpf: Add oversize check before call kvcalloc()
-  a4c37c9c4cfb UPSTREAM: bpf: Fix possible out of bound write in narrow load handling
-  1ea03a481a21 UPSTREAM: bpf: Fix leakage under speculation on mispredicted branches
-  81db55007151 UPSTREAM: bpf: Fix up register-based shifts in interpreter to silence KUBSAN
-  2a718ec4121d UPSTREAM: bpf: Fix integer overflow in argument calculation for bpf_map_area_alloc
-  09d892fd8bdc UPSTREAM: bpf: Zero-fill re-used per-cpu map element
-  1b272342abe0 UPSTREAM: bpf: Limit caller's stack depth 256 for subprogs with tailcalls
-  2da2d60bee4f UPSTREAM: bpf: Permit map_ptr arithmetic with opcode add and offset 0
-  5fc3be7856de UPSTREAM: bpf: Fix map permissions check
-  b07f0d67f663 UPSTREAM: bpf: Fix error return code in map_lookup_and_delete_elem()
-  ba649f7640eb UPSTREAM: bpf: Initialize storage pointers to NULL to prevent freeing garbage pointer
-  60734f27273e UPSTREAM: bpf: Ensure line_info.insn_off cannot point to insn with zero code
-
-project packages/apps/Settings/
-  836b401afa3 Settings: allow toggling battery saver while plugged in
-
-project packages/modules/Wifi/
-  189837a1a7 WifiConfigManager: re-enable PSK disabled by transition disable on load
-  5690981d42 WifiConfigManager: keep PSK on WPA3 transition disable when SAE upgrade is off
-
-project vendor/lineage/
-  9f874fa7 bacon: use mv instead of ln -f for finalizing the OTA package
+  c8c144cc7269 bpf: keep BPF_PROG_RUN on the CFI-safe bpf_call_func()
+  9ab456edb99b UPSTREAM: bpf: add program side {rd, wr}only support for maps
+  97cf24816deb UPSTREAM: bpf: disable and restore preemption in __BPF_PROG_RUN_ARRAY
+  f68c2433b12d BACKPORT: bpf: undo prog rejection on read-only lock failure
+  5d5a138568f8 UPSTREAM: bpf: enforce correct alignment for instructions
+  117fb5ceeec1 UPSTREAM: bpf: reject any prog that failed read-only lock
+  2bdea80f96e6 UPSTREAM: bpf: improve read-only handling
+  935e898f32c3 UPSTREAM: bpf: Support replacing cgroup-bpf program in MULTI mode
+  5b3c4db0e3a4 UPSTREAM: bpf: Remove unused new_flags in hierarchy_allows_attach()
+  40eb6adb14b2 UPSTREAM: bpf: Simplify __cgroup_bpf_attach
+  3b2bdb0e2c96 UPSTREAM: bpf: Verifier, refine 32bit bound in do_refine_retval_range
+  2cbc26e4d98f BACKPORT: bpf: Verifier, do explicit ALU32 bounds tracking
+  0eaed2e212f0 BACKPORT: bpf: Verifier, do_refine_retval_range may clamp umin to 0 incorrectly
+  234172f15d4e BACKPORT: bpf: Verifer, refactor adjust_scalar_min_max_vals
+  9aa9baa6f6f7 UPSTREAM: bpf: fix buggy r0 retval refinement for tracing helpers
+  8e5e3b415e3b BACKPORT: bpf/verifier: refine retval R0 state for bpf_get_stack helper
+  7a3779dd30cc UPSTREAM: bpf: Simplify reg_set_min_max_inv handling
+  770931f90ba1 UPSTREAM: bpf: Fix precision tracking for unbounded scalars
+  16d7a4a7c379 UPSTREAM: bpf: extend is_branch_taken to registers
+  216c4e74827a UPSTREAM: bpf: Account for insn->off when doing bpf_probe_read_kernel
+  f777d0e6429c UPSTREAM: bpf: Switch BPF probe insns to bpf_probe_read_kernel
+  c549c67ac17f UPSTREAM: bpf: mark bpf_event_notify and bpf_event_init as static
+  3e3f6bdedf55 BACKPORT: bpf: Replace prog_raw_tp+btf_id with prog_tracing
+  be3128cbf704 UPSTREAM: bpf: Enforce 'return 0' in BTF-enabled raw_tp programs
+  0dc298e42e03 UPSTREAM: bpf: Prepare btf_ctx_access for non raw_tp use case
+  7de14f491f64 UPSTREAM: bpf: Fix bpf_attr.attach_btf_id check
+  b13ef9de0c30 BACKPORT: bpf: Check types of arguments passed into helpers
+  517b907f2a5d BACKPORT: bpf: Add support for BTF pointers to interpreter
+  6994b866ad41 UPSTREAM: bpf: Attach raw_tp program with BTF via type name
+  31f6aab33ec6 UPSTREAM: bpf: Implement accurate raw_tp context access via BTF
+  78c79b5a7fa0 BACKPORT: bpf: Add attach_btf_id attribute to program load
+  c2735fa87965 UPSTREAM: bpf: Process in-kernel BTF
+  c3bcb63360da UPSTREAM: bpf: Fix precision tracking for BPF_ALU | BPF_TO_BE | BPF_END
+  b4110a987533 UPSTREAM: bpf: Fix incorrect verifier pruning due to missing register precision taints
+  1e8cf552223f UPSTREAM: bpf: propagate precision in ALU/ALU64 operations
+  bf37892afc8a UPSTREAM: bpf: Track contents of read-only maps as scalars
+  2613f1712198 UPSTREAM: bpf: Fix incorrect verifier simulation of ARSH under ALU32
+  8ce121c50643 UPSTREAM: bpf: remove never-hit branches in verifier adjust_scalar_min_max_vals
+  198d438ac162 BACKPORT: maccess: rename strncpy_from_unsafe_user to strncpy_from_user_nofault
+  1c76794ab51a UPSTREAM: uaccess: Add strict non-pagefault kernel-space read function
+  09427f128a8d BACKPORT: bpf: Add probe_read_{user, kernel} and probe_read_{user, kernel}_str helpers
+  a39943c9d8f7 BACKPORT: bpf: Make use of probe_user_write in probe write helper
+  6f2bba965661 UPSTREAM: bpf: Check address length before reading address family
+  dd2f29e25ca2 UPSTREAM: bpf: fix wrong helper enablement in cgroup local storage
+  b785b57bf4f2 UPSTREAM: bpf: Fix bpf_strtol and bpf_strtoul helpers for 32bit
+  deedfb22148a UPSTREAM: bpf: Add typecast to bpf helpers to help BTF generation
+  5b5821b5bd97 UPSTREAM: bpf: Factor out bpf_spin_lock into helpers.
+  59905c15101f UPSTREAM: btf: fix resolving BTF_KIND_VAR after ARRAY, STRUCT, UNION, PTR
+  52436d92b0dc UPSTREAM: bpf: Prevent decl_tag from being referenced in func_proto arg
+  fbb1978f81cc UPSTREAM: bpf: Clear zext_dst of dead insns
+  0bdf1ff84571 UPSTREAM: bpf: Fix tnum constraints for 32-bit comparisons
+  78e7da5ed037 UPSTREAM: bpf: Provide better register bounds after jmp32 instructions
+  71f0b432049b UPSTREAM: bpf: Allow narrow loads of bpf_sysctl fields with offset > 0
+  9ecfda917c2b UPSTREAM: bpf: Clean up indentation issue in BTF kflag processing
+  ed8e13a09f3e UPSTREAM: bpf: fix BTF verification of enums
+  a3ae854ab86c UPSTREAM: bpf: introduce verifier internal test flag
+  7dc1e992a391 UPSTREAM: bpf: handle 32-bit zext during constant blinding
+  a5c61e1775f8 UPSTREAM: bpf: add new BPF_BTF_GET_NEXT_ID syscall command
+  be493eabbb5b UPSTREAM: bpf: add BTF ids in procfs for file descriptors to BTF objects
+  bae70df76854 UPSTREAM: bpf: fix NULL deref in btf_type_is_resolve_source_only
+  8a3c85f7b8d4 BACKPORT: bpf: precise scalar_value tracking
+  feb0ca1d0846 UPSTREAM: bpf: track spill/fill of constants
+  606308bec406 UPSTREAM: bpf: introduce bounded loops
+  2b7bfa87b4a2 BACKPORT: sysctl: define proc_do_static_key()
+  118f6a82d640 UPSTREAM: bpf: remove __rcu annotations from bpf_prog_array
+  47b2384e7685 UPSTREAM: bpf: verifier: randomize high 32-bit when BPF_F_TEST_RND_HI32 is set
+  66a4279765ae UPSTREAM: bpf: introduce new bpf prog load flags "BPF_F_TEST_RND_HI32"
+  e5bc7a33410d UPSTREAM: bpf: verifier: insert zero extension according to analysis result
+  5b8c38a64896 UPSTREAM: bpf: introduce new mov32 variant for doing explicit zero extension
+  cff12869d092 BACKPORT: bpf: verifier: mark patched-insn with sub-register zext flag
+  57ba31b0c155 BACKPORT: bpf: verifier: mark verified-insn with sub-register zext flag
+  b98f3c724176 bpf: Inherit expanded/patched seen count from old aux data
+  ab30d6136240 UPSTREAM: bpf: convert explored_states to hash table
+  2d398c3e3dd7 UPSTREAM: bpf: split explored_states
+  eed44d210d78 UPSTREAM: bpf: cleanup explored_states
+  e2df434bf87f UPSTREAM: bpf: bump jmp sequence limit
+  60892bd0a3bf UPSTREAM: bpf: fix out of bounds backwards jmps due to dead code removal
+  f01c2eb10567 UPSTREAM: bpf: drop bpf_verifier_lock
+  fc8a8a680c41 UPSTREAM: bpf: remove global variables
+  0423505a35cf BACKPORT: bpf: verifier: Allocate idmap scratch in verifier env
+  4a0ca771f4e3 UPSTREAM: bpf: refactor "check_reg_arg" to eliminate code redundancy
+  4c58045c11f4 UPSTREAM: bpf: factor out reg and stack slot propagation into "propagate_liveness_reg"
+  9b7f3f9b968a UPSTREAM: bpf: refactor propagate_liveness to eliminate code redundance
+  27814e4e8363 UPSTREAM: bpf: refactor propagate_liveness to eliminate duplicated for loop
+  3b37483b9a5d UPSTREAM: bpf: allow for key-less BTF in array map
+  de68a62db251 UPSTREAM: bpf: allow . char as part of the object name
+  f589df09a54a UPSTREAM: bpf: move BPF_F_QUERY_EFFECTIVE after map flags
+  0a51acc0428c UPSTREAM: bpf: do not retain flags that are not tied to map lifetime
+  ca82db54181a UPSTREAM: bpf: implement lookup-free direct value access for maps
+  25544e603b15 UPSTREAM: bpf: increase verifier log limit
+  c75df337d476 UPSTREAM: bpf: increase complexity limit and maximum program size
+  f590621fd9dc UPSTREAM: bpf: verbose jump offset overflow check
+  9617a00e10da UPSTREAM: bpf: improve verification speed by not remarking live_read
+  0b29f161e6db UPSTREAM: bpf: improve verification speed by droping states
+  6c08fcf127b6 UPSTREAM: bpf: add verifier stats and log_level bit 2
+  ed093305ed3c UPSTREAM: bpf: remove incorrect 'verifier bug' warning
+  e2a87ae1be9d UPSTREAM: bpf: expose program stats via bpf_prog_info
+  27bdf8bbdcb5 UPSTREAM: bpf: enable program stats
+  e089c6eed885 UPSTREAM: bpf: check that BPF programs run with preemption disabled
+  9b6f6025d5ab UPSTREAM: bpf: Fix IPv6 dport byte-order in bpf_sk_lookup
+  e1092884bbe1 UPSTREAM: bpf: Allow sk_lookup with IPv6 module
+  72a77632c426 UPSTREAM: bpf: Add gso_size to __sk_buff
+  b0ed7e845575 UPSTREAM: bpf: fix access to skb_shared_info->gso_segs
+  e5da116d0d72 UPSTREAM: bpf: allow BPF programs access skb_shared_info->gso_segs field
+  c9b10e119e6b UPSTREAM: bpf: add skb->tstamp r/w access from tc clsact and cg skb progs
+  4fe269c8e5ff UPSTREAM: bpf, cgroups: clean up kerneldoc warnings
+  35e94f820a8e UPSTREAM: bpf: fix bitrotted kerneldoc
+  242e4561931a UPSTREAM: bpf: btf: allow typedef func_proto
+  0670c12b4422 UPSTREAM: bpf: JIT blinds support JMP32
+  5659613bf380 BACKPORT: bpf: interpreter support for JMP32
+  b6b45ad1ef38 UPSTREAM: bpf: disassembler support JMP32
+  cf888d9c2bd1 BACKPORT: bpf: verifier support JMP32
+  82037b5ad8a3 UPSTREAM: bpf: allocate 0x06 to new eBPF instruction class JMP32
+  6f59853e2498 UPSTREAM: bpf: refactor verifier min/max code for condition jump
+  2927f8a255fb UPSTREAM: bpf: verifier: record original instruction index
+  848f686255de UPSTREAM: bpf: verifier: remove unconditional branches by 0
+  090d38dcbdf6 UPSTREAM: bpf: verifier: remove dead code
+  ab4acb6fbf8b UPSTREAM: bpf: verifier: hard wire branches to dead code
+  719ce3bb95b6 UPSTREAM: bpf: change parameters of call/branch offset adjustment
+  e8a2255e057b UPSTREAM: bpf: fix a (false) compiler warning
+  a3430dee76c5 UPSTREAM: bpf: btf: support 128 bit integer type
+  cefae0665023 UPSTREAM: bpf: verifier: reorder stack size check with dead code sanitization
+  749cde57fd32 UPSTREAM: bpf: verifier: teach the verifier to reason about the BPF_JSET instruction
+  4566cdeeda83 UPSTREAM: bpf: support raw tracepoints in modules
+  3970bfd2ff5a UPSTREAM: bpf: include sub program tags in bpf_prog_info
+  166b5f238f27 UPSTREAM: bpf: interpreter support BPF_ALU | BPF_ARSH
+  a408f0fa6adc UPSTREAM: bpf: allow zero-initializing hash map seed
+  7f664abf285a bpf: use per htab salt for bucket hash
+  d825d7f7c59c UPSTREAM: bpf, verifier: avoid retpoline for map push/pop/peek operation
+  dfb49889a55d UPSTREAM: bpf, verifier: remove unneeded flow key in check_helper_mem_access
+  2ec9ed9f4a8e UPSTREAM: bpf, verifier: reject xadd on flow key memory
+  a5d1388679e2 UPSTREAM: bpf: remove redundant null pointer check before consume_skb
+  b18b9166050a UPSTREAM: bpf/verifier: display non-spill stack slot types in print_verifier_state
+  d4ffc5df48ce UPSTREAM: bpf: remove duplicated include from syscall.c
+  323c6965f200 BACKPORT: bpf, lpm: fix lookup bug in map_delete_elem
+  6d56cc409786 UPSTREAM: bpf: Optimize lpm trie delete
+  15c15ef55a72 fixup! bpf: Implement map_delete_elem for BPF_MAP_TYPE_LPM_TRIE
+  a18308e85ec7 bpf: Don't use %pK through printk
+  a7e161eb70ae bpf: kernel side support for BTF Var and DataSec
+  e9a1fae3fae0 bpf: add specification for BTF Var and DataSec kinds
+  5dd0fe5e60c9 bpf: Implement map_delete_elem for BPF_MAP_TYPE_LPM_TRIE
+  4102f8cb5a1f arm64: bpf: optimize modulo operation
