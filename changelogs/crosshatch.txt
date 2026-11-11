@@ -1,7 +1,24 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261109_010759-UNOFFICIAL-crosshatch.zip (2026-11-08 17:03 PST)
-Changes since: 2026-11-08 15:48 PST
+Build:  lineage-23.2-20261111_002827-UNOFFICIAL-crosshatch.zip (2026-11-10 16:24 PST)
+Changes since: 2026-11-08 17:03 PST
+
+project device/google/crosshatch/
+  09b52d262 daily_clean: skip re-creating a file when /data is low on space
+  083e0a6bc release.txt: ship the SysUpd_ Google system app updates
+  6094808bd daily_clean: record zstd -> lz4 conversion time
+  a0c7fabb3 f2fs: lz4hc-9 for /data, compression switch module, per-app exceptions
+  35c8c5f26 daily_clean.sh: move same-version system app updates back to the ROM
+  5156e228f release.txt: do not ship the sysrevert KSU module
+  a0efc8a4d release.txt: ship the sysrevert KSU module
+  1d064eedf daily_clean.sh: log each compressed file by package/file name
+  73912cf2d sepolicy: label msm-4.14 wakeup sources sysfs_wakeup
 
 project device/google/sunfish/
-  42b67eb9 sunfish: rename release switches to LIN23_SUNFISH_RELEASE*
+  785343e8 daily_clean: skip re-creating a file when /data is low on space
+  e9070995 daily_clean: record zstd -> lz4 conversion time
+  66bcca2a f2fs: lz4hc-9 for /data, compression switch module, per-app exceptions
+  6bf7459a daily_clean.sh: move same-version system app updates back to the ROM
+  3a8a2201 release.txt: do not ship the sysrevert KSU module
+  7c17fec6 release.txt: ship the sysrevert KSU module
+  0d55a564 daily_clean.sh: log each compressed file by package/file name
