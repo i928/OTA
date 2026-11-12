@@ -1,12 +1,29 @@
 LineageOS 23.2 -- unofficial build by i928
 Device: crosshatch
-Build:  lineage-23.2-20261111_015642-UNOFFICIAL-crosshatch.zip (2026-11-10 17:56 PST)
-Changes since: 2026-11-10 16:24 PST
+Build:  lineage-23.2-20261112_003349-UNOFFICIAL-crosshatch.zip (2026-11-11 16:29 PST)
+Changes since: 2026-11-10 17:56 PST
 
 project device/google/crosshatch/
-  d84e6bc68 shizuku_dedup.sh: also start a missing root server
-  b84265f97 data-adb-seed: leave one Shizuku server after boot (shizuku_dedup.sh)
+  c3079ee77 sepolicy: allow three recurring boot denials; drop ro.hwui.render_ahead
+  c6b14d298 release: ship the listed KSU modules as zips; hide Osaifu-Keitai
+  81b180cd7 sepolicy: label /data/per_boot so zram writeback works
+  ac8040533 crosshatch: build userspace against msm-4.9's UAPI headers
+  f4ff2ed1b crosshatch: device.mk: the kernel is 4.14 now (comment)
+  fb081fc80 crosshatch: build msm-4.14 (kernel/google/msm-4.14-b1c1)
 
-project device/google/sunfish/
-  343b3966 shizuku_dedup.sh: also start a missing root server
-  520dee92 data-adb-seed: leave one Shizuku server after boot (shizuku_dedup.sh)
+project hardware/qcom/sdm845/display/
+  107b6acf gralloc, gpu_tonemapper: build against the legacy ION uapi headers
+
+project kernel/google/msm-4.14-b1c1/
+  f8e7a7bdcf95 arm64: dts: b1c1: put ramoops and access_ramoops under soc
+  34c7956d0444 power: smb2: report the USB port temperature on b1c1
+  476a394121b8 arm64: dts: sdm845: name the GPU thermal zones for kgsl
+  347716fb8e98 arm64: dts: b1c1: move the PM8998 ADC and temp alarms to 4.14 bindings
+  9deb918c0fd6 iio: adc5 / thermal: adc-tm: support the PM8998 ADC as rev2
+  6df13c2d505b arm64: dts: b1c1: keep QUAT TDM RX a single-port group
+  d8e157a762ba arm64: dts: sdm845: limit the primary USB controller to super-speed
+  f95ba4099f31 uapi: Define __BITS_PER_LONG based on compiler target
+  9d6810e4e906 fuse: Trust the server's size when no FUSE writer is open
+
+project vendor/lineage/
+  9c1c5541 kernel: add TARGET_KERNEL_HEADERS_SOURCE for the userspace UAPI headers
